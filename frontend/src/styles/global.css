@@ -1,0 +1,438 @@
+/* ═══════════════════════════════════════════════════════════════
+   PRESIDENTIAL ROYAL PALACE HOTEL — Single Fixed Luxury Theme
+   Palette: #0F172A Navy · #F5F0E6 Beige · #D4AF37 Gold · #6B705C Olive
+   ═══════════════════════════════════════════════════════════════ */
+
+:root {
+
+  /* ── Brand Colors ──────────────────────────────────────────── */
+  --royal-gold:   #D4AF37;
+  --gold-accent:  #B8960C;
+  --gold-light:   #F5DC6E;
+  --gold-dark:    #9E7A15;
+  --navy:         #0F172A;
+  --navy-mid:     #1E3A5F;
+  --navy-light:   #2D5A8E;
+  --olive:        #6B705C;
+  --olive-light:  #8A9076;
+  --olive-dark:   #4E5441;
+
+  /* ── Backgrounds ───────────────────────────────────────────── */
+  --bg-primary:    #F5F0E6;   /* luxury beige page background   */
+  --bg-secondary:  #EDE8DA;   /* deeper beige secondary areas   */
+  --bg-card:       #FAFAF8;   /* premium white cards            */
+  --bg-elevated:   #FFFFFF;   /* pure white elevated surfaces   */
+  --bg-dark:       #0F172A;   /* deep navy (footer / hero)      */
+  --bg-dark-mid:   #1E3A5F;   /* mid-navy                       */
+  --bg-overlay:    rgba(15, 23, 42, 0.72);
+
+  /* ── Text ──────────────────────────────────────────────────── */
+  --text-primary:   #1F2937;            /* strong dark text          */
+  --text-secondary: #6B7280;            /* muted luxury text         */
+  --text-heading:   #0F172A;            /* deep navy for headings    */
+  --text-muted:     rgba(31, 41, 55, 0.45);
+  --text-on-dark:   #EDE8DA;            /* readable on navy bg       */
+  --text-gold:      #D4AF37;
+
+  /* ── Form / Input ──────────────────────────────────────────── */
+  --input-bg:           #FFFFFF;
+  --input-bg-focus:     #FFFDF9;
+  --input-border:       rgba(212, 175, 55, 0.35);
+  --input-border-focus: #D4AF37;
+  --input-text:         #1F2937;
+  --input-placeholder:  rgba(31, 41, 55, 0.42);
+
+  /* ── Borders ───────────────────────────────────────────────── */
+  --border-light:  rgba(212, 175, 55, 0.22);
+  --border-gold:   rgba(212, 175, 55, 0.45);
+  --border-navy:   rgba(15, 23, 42, 0.12);
+  --border-subtle: rgba(31, 41, 55, 0.07);
+
+  /* ── Shadows ───────────────────────────────────────────────── */
+  --shadow-sm:   0 2px 12px rgba(15, 23, 42, 0.06);
+  --shadow-md:   0 6px 28px rgba(15, 23, 42, 0.10);
+  --shadow-lg:   0 16px 48px rgba(15, 23, 42, 0.13);
+  --shadow-xl:   0 24px 72px rgba(15, 23, 42, 0.16);
+  --shadow-gold: 0 8px 32px rgba(212, 175, 55, 0.30);
+  --shadow-navy: 0 8px 32px rgba(15, 23, 42, 0.24);
+  --shadow-dark: rgba(15, 23, 42, 0.12);
+  --shadow-light: rgba(200, 169, 106, 0.18);
+
+  /* ── Badges ────────────────────────────────────────────────── */
+  --badge-bg:   rgba(212, 175, 55, 0.12);
+  --badge-text: #8A6A00;
+
+  /* ── Status ────────────────────────────────────────────────── */
+  --success-bg:   rgba(107, 112, 92, 0.12);
+  --success-text: #3D5230;
+  --error-bg:     rgba(185, 28, 28, 0.08);
+  --error-text:   #B91C1C;
+  --warning-bg:   rgba(200, 169, 106, 0.12);
+  --warning-text: #8A6A1E;
+
+  /* ── Navbar ────────────────────────────────────────────────── */
+  --navbar-bg:   rgba(245, 240, 230, 0.97);
+  --navbar-text: #0F172A;
+
+  /* ── Typography ────────────────────────────────────────────── */
+  --font-heading: 'Playfair Display', 'Cinzel', Georgia, serif;
+  --font-body:    'Inter', 'Segoe UI', system-ui, sans-serif;
+
+  /* ── Spacing ───────────────────────────────────────────────── */
+  --spacing-xs:  0.5rem;    /*  8px */
+  --spacing-sm:  1rem;      /* 16px */
+  --spacing-md:  1.5rem;    /* 24px */
+  --spacing-lg:  2rem;      /* 32px */
+  --spacing-xl:  3rem;      /* 48px */
+  --spacing-2xl: 4rem;      /* 64px */
+  --spacing-3xl: 5rem;      /* 80px */
+
+  /* ── Transitions ───────────────────────────────────────────── */
+  --transition-fast:    all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-smooth:  all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-elegant: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* ── Border Radius ─────────────────────────────────────────── */
+  --radius-sm:   6px;
+  --radius-md:   10px;
+  --radius-lg:   14px;
+  --radius-xl:   18px;
+  --radius-2xl:  24px;
+  --radius-full: 9999px;
+
+  /* ── Legacy aliases ────────────────────────────────────────── */
+  --luxury-black:  #1F2937;
+  --midnight-blue: #0F172A;
+  --marble-white:  #FFFFFF;
+  --soft-white:    #FAFAF8;
+  --overlay-base:  rgba(245, 240, 230, 0.96);
+  --border-light-legacy: rgba(200, 169, 106, 0.22);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   CSS RESET
+   ═══════════════════════════════════════════════════════════════ */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.65;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+[dir="rtl"] body { direction: rtl; }
+
+/* ═══════════════════════════════════════════════════════════════
+   TYPOGRAPHY — Professional luxury hotel scale
+   ═══════════════════════════════════════════════════════════════ */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--text-heading);
+}
+
+/* Main page title: 36px–42px */
+h1 { font-size: clamp(2.25rem, 3.5vw, 2.625rem); font-weight: 800; letter-spacing: 0.01em; }
+
+/* Section title: 28px–32px */
+h2 { font-size: clamp(1.75rem, 2.8vw, 2rem); font-weight: 700; letter-spacing: 0.005em; }
+
+/* Card title: 22px–26px */
+h3 { font-size: clamp(1.375rem, 2.2vw, 1.625rem); font-weight: 600; }
+
+/* Sub-heading: 18px–22px */
+h4 { font-size: clamp(1.125rem, 1.8vw, 1.375rem); font-weight: 600; }
+
+/* Label heading: 16px–18px */
+h5 { font-size: clamp(1rem, 1.5vw, 1.125rem); font-weight: 600; }
+
+/* Small heading */
+h6 { font-size: 1rem; font-weight: 600; }
+
+/* Normal text: 16px–18px */
+p {
+  font-size: 1.0625rem;
+  color: var(--text-primary);
+  line-height: 1.75;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: var(--transition-smooth);
+}
+
+button {
+  font-family: var(--font-body);
+  cursor: pointer;
+  border: none;
+  background: none;
+  transition: var(--transition-smooth);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   FORM ELEMENTS — High-contrast, fully readable
+   ═══════════════════════════════════════════════════════════════ */
+input, textarea, select {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  outline: none;
+  transition: var(--transition-smooth);
+  background: var(--input-bg);
+  color: var(--input-text);
+  border: 1.5px solid var(--input-border);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--input-placeholder);
+}
+
+select option {
+  background: #FFFFFF;
+  color: #1F2937;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  background: var(--input-bg-focus);
+  border-color: var(--input-border-focus);
+  box-shadow: 0 0 0 3px rgba(200, 169, 106, 0.14);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   NEUTRALISE ALL DARK-MODE OVERRIDES
+   ═══════════════════════════════════════════════════════════════ */
+[data-theme="night"],
+[data-theme="day"],
+[data-theme="light"],
+[data-theme="night"] *,
+[data-theme="day"] * {
+  --bg-primary:    #F5F0E6;
+  --bg-secondary:  #EDE8DA;
+  --bg-card:       #FAFAF8;
+  --bg-elevated:   #FFFFFF;
+  --text-primary:  #1F2937;
+  --text-secondary: #6B7280;
+  --text-heading:  #0F172A;
+  --text-muted:    rgba(31, 41, 55, 0.45);
+  --input-bg:      #FFFFFF;
+  --input-text:    #1F2937;
+  --input-border:  rgba(200, 169, 106, 0.35);
+  --border-light:  rgba(200, 169, 106, 0.22);
+  --badge-bg:      rgba(200, 169, 106, 0.12);
+  --badge-text:    #7A6020;
+  --navbar-bg:     rgba(245, 240, 230, 0.97);
+  --navbar-text:   #0F172A;
+  --royal-gold:    #C8A96A;
+  --gold-accent:   #A8883E;
+  --shadow-dark:   rgba(15, 23, 42, 0.12);
+  --shadow-light:  rgba(200, 169, 106, 0.18);
+  --shadow-md:     0 6px 28px rgba(15, 23, 42, 0.10);
+  --shadow-lg:     0 16px 48px rgba(15, 23, 42, 0.13);
+  --shadow-gold:   0 8px 32px rgba(200, 169, 106, 0.26);
+  --overlay-base:  rgba(245, 240, 230, 0.96);
+}
+
+[data-theme="night"] body,
+[data-theme="night"] .booking-page,
+[data-theme="night"] .booking-chat,
+[data-theme="night"] .luxury-option,
+[data-theme="night"] .number-option,
+[data-theme="night"] .direct-booking-card,
+[data-theme="night"] .room-card,
+[data-theme="night"] .room-card--specs-only,
+[data-theme="night"] .rooms-results,
+[data-theme="night"] .navbar__profile-dropdown,
+[data-theme="night"] .navbar__mobile-links {
+  background: var(--bg-card) !important;
+  color: var(--text-primary) !important;
+}
+
+[data-theme="night"] h1,
+[data-theme="night"] h2,
+[data-theme="night"] h3,
+[data-theme="night"] h4,
+[data-theme="night"] h5,
+[data-theme="night"] h6 {
+  color: var(--text-heading) !important;
+}
+
+[data-theme="night"] p,
+[data-theme="night"] span,
+[data-theme="night"] .text-primary,
+[data-theme="night"] .booking-header p,
+[data-theme="night"] .services-header p {
+  color: var(--text-primary) !important;
+}
+
+[data-theme="night"] .footer {
+  background: var(--bg-dark) !important;
+}
+
+[data-theme="night"] .footer p,
+[data-theme="night"] .footer span,
+[data-theme="night"] .footer a {
+  color: var(--text-on-dark) !important;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   SCROLLBAR
+   ═══════════════════════════════════════════════════════════════ */
+::-webkit-scrollbar       { width: 9px; height: 9px; }
+::-webkit-scrollbar-track { background: var(--bg-secondary); }
+::-webkit-scrollbar-thumb {
+  background: var(--royal-gold);
+  border-radius: var(--radius-full);
+}
+::-webkit-scrollbar-thumb:hover { background: var(--gold-accent); }
+
+/* ═══════════════════════════════════════════════════════════════
+   SELECTION
+   ═══════════════════════════════════════════════════════════════ */
+::selection      { background: rgba(200, 169, 106, 0.28); color: var(--text-primary); }
+::-moz-selection { background: rgba(200, 169, 106, 0.28); color: var(--text-primary); }
+
+/* ═══════════════════════════════════════════════════════════════
+   LAYOUT UTILITIES
+   ═══════════════════════════════════════════════════════════════ */
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.section {
+  padding: var(--spacing-3xl) 0;  /* 80px */
+}
+
+.flex-center  { display: flex; justify-content: center; align-items: center; }
+.text-center  { text-align: center; }
+.text-gold    { color: var(--royal-gold); }
+.text-navy    { color: var(--navy); }
+.text-olive   { color: var(--olive); }
+.text-muted   { color: var(--text-muted); }
+
+.grid-auto {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--spacing-lg);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   CARD BASE — Premium shadow + border-radius
+   ═══════════════════════════════════════════════════════════════ */
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-xl);     /* 18px */
+  padding: 1.75rem 2rem;               /* 28px–32px */
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition-smooth);
+}
+.card:hover {
+  box-shadow: var(--shadow-md);
+  border-color: var(--border-gold);
+  transform: translateY(-3px);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   VISUAL UTILITIES
+   ═══════════════════════════════════════════════════════════════ */
+.luxury-gradient {
+  background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+}
+.gold-gradient {
+  background: linear-gradient(135deg, var(--royal-gold) 0%, var(--gold-accent) 100%);
+}
+.navy-gradient {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+}
+.glass-effect {
+  background: rgba(255, 255, 255, 0.78);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(200, 169, 106, 0.18);
+}
+.luxury-shadow { box-shadow: var(--shadow-md); }
+.gold-glow     { box-shadow: var(--shadow-gold); }
+.navy-glow     { box-shadow: var(--shadow-navy); }
+
+.gold-divider {
+  width: 64px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--royal-gold), transparent);
+  margin: var(--spacing-md) auto;
+}
+.navy-bar {
+  width: 48px;
+  height: 3px;
+  background: var(--navy);
+  border-radius: 2px;
+  margin: 0.75rem auto 0;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   ANIMATIONS
+   ═══════════════════════════════════════════════════════════════ */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-44px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(44px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes shimmer {
+  0%   { background-position: -1200px 0; }
+  100% { background-position:  1200px 0; }
+}
+@keyframes goldPulse {
+  0%, 100% { box-shadow: 0 0 0 0   rgba(200, 169, 106, 0.4); }
+  50%       { box-shadow: 0 0 0 12px rgba(200, 169, 106, 0);   }
+}
+
+.animate-fade-in    { animation: fadeIn      0.75s ease-out both; }
+.animate-slide-left { animation: slideInLeft 0.75s ease-out both; }
+.animate-slide-right{ animation: slideInRight 0.75s ease-out both; }
+
+/* ═══════════════════════════════════════════════════════════════
+   RTL SUPPORT
+   ═══════════════════════════════════════════════════════════════ */
+[dir="rtl"] .container { direction: rtl; }
+[dir="rtl"] input,
+[dir="rtl"] textarea   { text-align: right; }
+
+/* ═══════════════════════════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  .section    { padding: var(--spacing-2xl) 0; }
+  .container  { padding: 0 1.25rem; }
+}

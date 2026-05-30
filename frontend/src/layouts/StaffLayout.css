@@ -1,0 +1,232 @@
+/* ═══════════════════════════════════════════════════════════════
+   STAFF LAYOUT — Luxury enterprise design
+   Dark Navy Sidebar · Premium White Content
+   ═══════════════════════════════════════════════════════════════ */
+
+.staff-layout {
+  display: flex;
+  min-height: 100vh;
+  background: #F5F0E6;
+}
+
+/* ── Sidebar ───────────────────────────────────────────────── */
+.staff-sidebar {
+  width: 300px;
+  background: linear-gradient(180deg, #0F172A 0%, #0A1020 100%);
+  border-right: 1px solid rgba(200, 169, 106, 0.18);
+  display: flex;
+  flex-direction: column;
+  transition: width 0.3s ease;
+  box-shadow: 4px 0 20px rgba(15, 23, 42, 0.28);
+  flex-shrink: 0;
+}
+
+.staff-sidebar.closed {
+  width: 80px;
+}
+
+/* ── Sidebar Header ────────────────────────────────────────── */
+.staff-sidebar__header {
+  padding: 1.75rem 1.5rem;
+  border-bottom: 1px solid rgba(200, 169, 106, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.staff-sidebar__logo {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+  text-decoration: none;
+}
+
+.staff-sidebar__logo-icon {
+  font-size: 2rem;
+  color: #C8A96A;
+  filter: drop-shadow(0 0 8px rgba(200, 169, 106, 0.4));
+}
+
+.staff-sidebar__logo-text h3 {
+  color: #C8A96A;
+  font-size: 1.25rem;
+  margin: 0 0 0.2rem;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+}
+
+.staff-sidebar__logo-text p {
+  color: rgba(237, 232, 218, 0.55);
+  font-size: 0.75rem;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.staff-sidebar__toggle {
+  background: rgba(200, 169, 106, 0.1);
+  border: 1px solid rgba(200, 169, 106, 0.2);
+  color: #C8A96A;
+  padding: 0.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1.125rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.staff-sidebar__toggle:hover {
+  background: rgba(200, 169, 106, 0.2);
+}
+
+/* ── Nav ───────────────────────────────────────────────────── */
+.staff-sidebar__nav {
+  flex: 1;
+  padding: 1.25rem 0.875rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  overflow-y: auto;
+}
+
+.staff-sidebar__link {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+  padding: 0.875rem 1rem;
+  color: rgba(237, 232, 218, 0.72);
+  text-decoration: none;
+  border-radius: 10px;
+  transition: all 0.2s ease;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.staff-sidebar__link:hover {
+  background: rgba(200, 169, 106, 0.1);
+  color: #C8A96A;
+}
+
+.staff-sidebar__link.active {
+  background: rgba(200, 169, 106, 0.15);
+  color: #C8A96A;
+  border-left: 3px solid #C8A96A;
+  padding-left: calc(1rem - 3px);
+  font-weight: 600;
+}
+
+.staff-sidebar__link-icon {
+  font-size: 1.25rem;
+  min-width: 22px;
+  display: flex;
+  justify-content: center;
+}
+
+/* ── Footer ────────────────────────────────────────────────── */
+.staff-sidebar__footer {
+  padding: 1.25rem;
+  border-top: 1px solid rgba(200, 169, 106, 0.1);
+}
+
+.staff-sidebar__logout {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+  width: 100%;
+  padding: 0.875rem 1rem;
+  background: rgba(185, 28, 28, 0.1);
+  border: 1px solid rgba(185, 28, 28, 0.22);
+  color: #FCA5A5;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 0.9375rem;
+  font-weight: 600;
+}
+
+.staff-sidebar__logout:hover {
+  background: rgba(185, 28, 28, 0.18);
+  border-color: rgba(185, 28, 28, 0.35);
+}
+
+/* ── Main ──────────────────────────────────────────────────── */
+.staff-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+/* ── Top Header ────────────────────────────────────────────── */
+.staff-header {
+  background: rgba(250, 250, 248, 0.97);
+  border-bottom: 1px solid rgba(200, 169, 106, 0.15);
+  padding: 1.25rem 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 2px 12px rgba(15, 23, 42, 0.06);
+}
+
+.staff-header__content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.staff-header__content h1 {
+  color: #0F172A;
+  font-size: 1.5rem;
+  margin: 0;
+  font-weight: 700;
+  font-family: 'Playfair Display', Georgia, serif;
+  letter-spacing: 0.5px;
+}
+
+.staff-header__notification {
+  position: relative;
+  background: rgba(200, 169, 106, 0.1);
+  border: 1px solid rgba(200, 169, 106, 0.25);
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: #6B7280;
+}
+
+.staff-header__notification:hover {
+  background: rgba(200, 169, 106, 0.2);
+  color: #8A6020;
+}
+
+.staff-header__notification .badge {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background: #DC2626;
+  color: #fff;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  padding: 0.125rem 0.4375rem;
+  border-radius: 10px;
+  border: 2px solid #F5F0E6;
+}
+
+/* ── Content ───────────────────────────────────────────────── */
+.staff-content {
+  flex: 1;
+  padding: 2.25rem;
+  overflow-y: auto;
+  background: #F5F0E6;
+}

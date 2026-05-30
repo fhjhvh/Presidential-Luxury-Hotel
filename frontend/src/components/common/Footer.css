@@ -1,0 +1,183 @@
+/* ═══════════════════════════════════════════════════════════
+   FOOTER — Deep Navy Luxury
+   ═══════════════════════════════════════════════════════════ */
+
+.footer {
+  background: linear-gradient(180deg, var(--bg-dark) 0%, #070E1C 100%);
+  border-top: 3px solid var(--royal-gold);
+  margin-top: auto;
+}
+
+.footer__top {
+  padding: var(--spacing-3xl) 0 var(--spacing-xl) 0;
+}
+
+.footer__grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: var(--spacing-xl);
+}
+
+/* ── Brand Column ──────────────────────────────────────── */
+.footer__brand {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.footer__logo {
+  display: flex;
+  align-items: center;
+}
+
+.footer__description {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: rgba(237, 232, 218, 0.82);
+  max-width: 420px;
+}
+
+.footer__contact {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-top: var(--spacing-sm);
+}
+
+.footer__contact p {
+  font-size: 0.9375rem;
+  color: rgba(237, 232, 218, 0.78);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  line-height: 1.5;
+}
+
+/* ── Links Columns ─────────────────────────────────────── */
+.footer__links-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.footer__links-section h4 {
+  font-family: var(--font-heading);
+  font-size: 1.125rem;
+  color: var(--royal-gold);
+  letter-spacing: 1.5px;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid rgba(200, 169, 106, 0.25);
+  text-transform: uppercase;
+}
+
+.footer__links-section ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+}
+
+.footer__links-section li a {
+  font-size: 0.9375rem;
+  color: rgba(237, 232, 218, 0.72);
+  transition: var(--transition-smooth);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.footer__links-section li a::before {
+  content: '›';
+  color: var(--royal-gold);
+  font-size: 1rem;
+  opacity: 0;
+  transform: translateX(-6px);
+  transition: var(--transition-smooth);
+}
+
+.footer__links-section li a:hover {
+  color: var(--royal-gold);
+  transform: translateX(4px);
+}
+
+.footer__links-section li a:hover::before {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ── Bottom Bar ────────────────────────────────────────── */
+.footer__bottom {
+  padding: var(--spacing-lg) 0;
+  border-top: 1px solid rgba(200, 169, 106, 0.15);
+}
+
+.footer__bottom-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer__copyright {
+  font-size: 0.9375rem;
+  color: rgba(237, 232, 218, 0.5);
+}
+
+/* ── Social Links ──────────────────────────────────────── */
+.footer__social {
+  display: flex;
+  gap: 0.9375rem;
+}
+
+.footer__social-link {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(200, 169, 106, 0.1);
+  border: 1px solid rgba(200, 169, 106, 0.25);
+  border-radius: 50%;
+  color: var(--royal-gold);
+  font-size: 1.25rem;
+  transition: var(--transition-smooth);
+}
+
+.footer__social-link:hover {
+  background: var(--royal-gold);
+  color: var(--navy);
+  border-color: var(--royal-gold);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(200, 169, 106, 0.35);
+}
+
+/* ── Responsive ────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .footer__grid {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-lg);
+  }
+  .footer__brand {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer__grid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-lg);
+  }
+  .footer__bottom-content {
+    flex-direction: column;
+    gap: var(--spacing-md);
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer__top { padding: 3rem 0 2rem; }
+  .footer__description  { font-size: 0.9rem; }
+  .footer__links-section li a { font-size: 0.875rem; }
+  .footer__copyright { font-size: 0.8125rem; }
+  .footer__social-link { width: 42px; height: 42px; font-size: 1.1rem; }
+  .footer__contact p { font-size: 0.875rem; }
+}

@@ -1,0 +1,4 @@
+.service-details { min-height: 100vh; background: #F5F0E6; }
+.service-hero { height: 60vh; background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; position: relative; }
+.service-hero .overlay { position: absolute; inset: 0; background: rgba(11, 29, 42, 0.6); }
+.service-hero h1 { position: relative; z-index: 2; color: #C8A96A; font-size: 3.5rem; }

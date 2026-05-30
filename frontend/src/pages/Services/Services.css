@@ -1,0 +1,10 @@
+.services-page { min-height: 100vh; background: var(--bg-primary, #F7F5F2); }
+.services-hero { padding: 4rem 0; background: linear-gradient(135deg, #EFEAE4, #E5DED6); text-align: center; }
+.services-hero h1 { font-size: 3.5rem; color: var(--royal-gold); margin-bottom: 1rem; }
+.services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
+.service-item { padding: 2rem; background: #FFFFFF; border: 1px solid rgba(198, 161, 91, 0.2); border-radius: 8px; text-align: center; box-shadow: 0 4px 20px rgba(46, 46, 46, 0.08); transition: var(--transition-elegant); }
+.service-item:hover { border-color: var(--royal-gold); transform: translateY(-4px); box-shadow: 0 10px 30px rgba(198, 161, 91, 0.15); }
+.service-icon { font-size: 4rem; margin-bottom: 1rem; }
+.service-item h3 { font-size: 1.5rem; color: var(--royal-gold); margin-bottom: 0.5rem; }
+.service-arrow { color: var(--royal-gold); font-size: 1.5rem; margin-top: 1rem; transition: var(--transition-smooth); }
+.service-item:hover .service-arrow { transform: translateX(10px); }

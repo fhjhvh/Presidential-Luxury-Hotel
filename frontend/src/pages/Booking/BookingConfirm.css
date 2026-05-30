@@ -1,0 +1,225 @@
+.booking-confirm-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  padding: 2rem;
+}
+
+.booking-confirm-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.booking-confirm-container h1 {
+  color: #d4af37;
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.booking-layout {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 2rem;
+}
+
+.room-summary,
+.booking-form-section {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  padding: 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.room-summary h2,
+.booking-form-section h2 {
+  color: white;
+  font-size: 1.5rem;
+  margin: 0 0 1.5rem 0;
+}
+
+.room-card {
+  background: rgba(255, 255, 255, 0.03);
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+}
+
+.room-card h3 {
+  color: #d4af37;
+  font-size: 1.3rem;
+  margin: 0 0 0.5rem 0;
+}
+
+.room-type {
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0.5rem 0;
+  font-size: 0.95rem;
+}
+
+.room-price {
+  color: white;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 1rem 0;
+}
+
+.room-features {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 1rem 0;
+}
+
+.feature-tag {
+  background: rgba(212, 175, 55, 0.2);
+  color: #d4af37;
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  border: 1px solid rgba(212, 175, 55, 0.3);
+}
+
+.room-capacity {
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0.5rem 0 0 0;
+}
+
+.discount-notice {
+  display: flex;
+  gap: 1rem;
+  background: rgba(212, 175, 55, 0.1);
+  border: 2px solid #d4af37;
+  padding: 1.5rem;
+  border-radius: 8px;
+  align-items: center;
+}
+
+.discount-icon {
+  font-size: 2rem;
+}
+
+.discount-notice strong {
+  color: #d4af37;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.discount-notice p {
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.booking-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-group label {
+  color: white;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.form-group input,
+.form-group textarea {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: white;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #d4af37;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.form-group textarea {
+  resize: vertical;
+  font-family: inherit;
+}
+
+.error-alert {
+  background: rgba(244, 67, 54, 0.2);
+  border: 1px solid #f44336;
+  color: #ff6b6b;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.price-summary {
+  background: rgba(255, 255, 255, 0.03);
+  padding: 1.5rem;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.price-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.75rem 0;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1rem;
+}
+
+.price-row.discount {
+  color: #4caf50;
+}
+
+.price-row.total {
+  border-top: 2px solid rgba(255, 255, 255, 0.1);
+  margin-top: 0.5rem;
+  padding-top: 1rem;
+  color: white;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.price-row.total span:last-child {
+  color: #d4af37;
+}
+
+.form-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.form-actions button {
+  flex: 1;
+}
+
+.error-message {
+  text-align: center;
+  padding: 4rem 2rem;
+  color: white;
+}
+
+.error-message h2 {
+  color: #d4af37;
+  margin-bottom: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .booking-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .booking-confirm-container h1 {
+    font-size: 2rem;
+  }
+}

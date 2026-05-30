@@ -1,0 +1,27 @@
+{
+  "name": "presidential-luxury-hotel-management-system",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --config frontend/vite.config.js",
+    "dev:frontend": "vite --config frontend/vite.config.js",
+    "dev:backend": "cd backend && npm run dev",
+    "build": "vite build --config frontend/vite.config.js",
+    "preview": "vite preview --config frontend/vite.config.js"
+  },
+  "dependencies": {
+    "framer-motion": "^11.0.5",
+    "i18next": "^25.7.3",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-i18next": "^16.5.0",
+    "react-router-dom": "^6.22.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "@vitejs/plugin-react": "^4.3.1",
+    "vite": "^5.3.1"
+  }
+}

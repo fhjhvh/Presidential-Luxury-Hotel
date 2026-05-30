@@ -1,0 +1,123 @@
+.hotel-control-entry {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #0a1628 0%, #1a2942 50%, #0a1628 100%);
+  padding: 2rem;
+}
+
+.entry-container {
+  max-width: 600px;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  border-radius: 24px;
+  padding: 4rem 3rem;
+  text-align: center;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.entry-icon {
+  font-size: 5rem;
+  margin-bottom: 1.5rem;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.entry-title {
+  font-size: 2.5rem;
+  font-weight: 300;
+  color: #d4af37;
+  margin-bottom: 0.5rem;
+  letter-spacing: 2px;
+}
+
+.entry-subtitle {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 3rem;
+}
+
+.entry-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.25rem 3rem;
+  background: linear-gradient(135deg, #d4af37 0%, #c9a44c 100%);
+  border: none;
+  border-radius: 12px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #0a1628;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 24px rgba(212, 175, 55, 0.3);
+  margin-bottom: 3rem;
+}
+
+.entry-button:hover {
+  box-shadow: 0 12px 32px rgba(212, 175, 55, 0.5);
+  transform: translateY(-2px);
+}
+
+.button-icon {
+  font-size: 1.5rem;
+}
+
+.button-text {
+  letter-spacing: 1px;
+}
+
+.entry-features {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.feature-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.feature-item:hover {
+  background: rgba(212, 175, 55, 0.1);
+  border-color: rgba(212, 175, 55, 0.2);
+}
+
+.feature-icon {
+  font-size: 2rem;
+}
+
+.feature-label {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 500;
+}
+
+@media (max-width: 768px) {
+  .entry-container {
+    padding: 3rem 2rem;
+  }
+
+  .entry-title {
+    font-size: 2rem;
+  }
+
+  .entry-features {
+    grid-template-columns: 1fr;
+  }
+}

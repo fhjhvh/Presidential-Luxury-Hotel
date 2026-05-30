@@ -1,0 +1,240 @@
+.booking-success-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.success-container {
+  max-width: 800px;
+  width: 100%;
+  text-align: center;
+}
+
+.success-icon {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #4caf50, #8bc34a);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  color: white;
+  margin: 0 auto 2rem;
+  box-shadow: 0 10px 40px rgba(76, 175, 80, 0.3);
+}
+
+.success-container h1 {
+  color: #d4af37;
+  font-size: 2.5rem;
+  margin: 0 0 0.5rem 0;
+}
+
+.success-subtitle {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1.2rem;
+  margin: 0 0 2rem 0;
+}
+
+.booking-details-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  padding: 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  margin-bottom: 2rem;
+  text-align: left;
+}
+
+.booking-number-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.5rem;
+  background: rgba(212, 175, 55, 0.1);
+  border-radius: 8px;
+  margin-bottom: 2rem;
+  border: 2px solid #d4af37;
+}
+
+.booking-number-section .label {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+
+.booking-number {
+  color: #d4af37;
+  font-size: 1.8rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.details-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.detail-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.detail-label {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.detail-value {
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.pricing-section {
+  background: rgba(255, 255, 255, 0.03);
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+}
+
+.price-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.75rem 0;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1rem;
+}
+
+.price-row.discount {
+  color: #4caf50;
+}
+
+.original-price {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.price-row.total {
+  border-top: 2px solid rgba(255, 255, 255, 0.1);
+  margin-top: 0.5rem;
+  padding-top: 1rem;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: white;
+}
+
+.price-row.total span:last-child {
+  color: #d4af37;
+}
+
+.discount-notice {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: rgba(76, 175, 80, 0.1);
+  border: 1px solid #4caf50;
+  padding: 1rem;
+  border-radius: 8px;
+  color: #4caf50;
+  font-weight: 600;
+}
+
+.discount-notice .icon {
+  font-size: 1.5rem;
+}
+
+.next-steps {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  padding: 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  margin-bottom: 2rem;
+}
+
+.next-steps h3 {
+  color: white;
+  font-size: 1.5rem;
+  margin: 0 0 1.5rem 0;
+  text-align: center;
+}
+
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.step-card {
+  background: rgba(255, 255, 255, 0.03);
+  padding: 1.5rem;
+  border-radius: 8px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.step-card:hover {
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateY(-5px);
+}
+
+.step-icon {
+  font-size: 2.5rem;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.step-card h4 {
+  color: #d4af37;
+  margin: 0 0 0.5rem 0;
+  font-size: 1.1rem;
+}
+
+.step-card p {
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.action-buttons button {
+  min-width: 200px;
+}
+
+@media (max-width: 768px) {
+  .success-container h1 {
+    font-size: 2rem;
+  }
+
+  .details-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .steps-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .action-buttons {
+    flex-direction: column;
+  }
+
+  .action-buttons button {
+    width: 100%;
+  }
+}

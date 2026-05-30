@@ -1,0 +1,887 @@
+/* ═══════════════════════════════════════════════════════════════
+   INDIVIDUAL FLOOR PAGES — Bright Luxury Redesign
+   Covers: Floor0–Floor11, FloorB1, FloorB2
+   Palette: Beige #F5F0E6 · Navy #0B1D2A · Gold #C8A96A · Olive #6B7D5D · White #FFFFFF
+═══════════════════════════════════════════════════════════════ */
+
+/* ── Design Tokens ───────────────────────────────────────────── */
+.floor-page {
+  --flr-beige:        #F5F0E6;
+  --flr-beige-soft:   #EDE7D9;
+  --flr-beige-card:   #FAF7F2;
+  --flr-navy:         #0B1D2A;
+  --flr-navy-mid:     #142638;
+  --flr-navy-light:   rgba(11, 29, 42, 0.06);
+  --flr-gold:         #C8A96A;
+  --flr-gold-hover:   #B8943E;
+  --flr-gold-light:   rgba(200, 169, 106, 0.14);
+  --flr-gold-border:  rgba(200, 169, 106, 0.28);
+  --flr-olive:        #6B7D5D;
+  --flr-olive-light:  rgba(107, 125, 93, 0.10);
+  --flr-text:         rgba(11, 29, 42, 0.68);
+  --flr-text-dim:     rgba(11, 29, 42, 0.40);
+  --flr-shadow-sm:    0 2px 12px rgba(11, 29, 42, 0.07);
+  --flr-shadow-md:    0 8px 32px rgba(11, 29, 42, 0.10);
+  --flr-shadow-hover: 0 16px 48px rgba(11, 29, 42, 0.13);
+
+  min-height: 100vh;
+  background: var(--flr-beige);
+  color: var(--flr-navy);
+  font-family: var(--font-body, 'Inter', sans-serif);
+}
+
+/* ── Container ── */
+.floor-page .container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1.75rem;
+  width: 100%;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   1. HERO — Navy section: depth, elegance, impact
+═══════════════════════════════════════════════════════════════ */
+
+.floor-hero {
+  position: relative;
+  min-height: 55vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  isolation: isolate;
+  padding: 6rem 0 4.5rem;
+  background: var(--flr-navy);
+}
+
+/* Cinematic background photo with zoom animation */
+.floor-hero::before {
+  content: '';
+  position: absolute;
+  inset: -8%;
+  z-index: 0;
+  background-image: var(--flr-hero-img, none);
+  background-size: cover;
+  background-position: center;
+  animation: flr-hero-zoom 26s ease-in-out infinite alternate;
+}
+
+@keyframes flr-hero-zoom {
+  from { transform: scale(1.0); }
+  to   { transform: scale(1.14); }
+}
+
+/* Subtle gold top-glow over the image */
+.floor-hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(200, 169, 106, 0.08) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+/* Dark overlay — ensures text readability over photo backgrounds */
+.floor-hero__overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(
+    160deg,
+    rgba(11, 29, 42, 0.82) 0%,
+    rgba(11, 29, 42, 0.58) 50%,
+    rgba(11, 29, 42, 0.78) 100%
+  );
+}
+
+.floor-hero__content {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* Floor badge */
+.floor-hero__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.42rem 1.4rem;
+  background: rgba(200, 169, 106, 0.12);
+  border: 1px solid var(--flr-gold);
+  color: var(--flr-gold);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  border-radius: 50px;
+  margin-bottom: 1.75rem;
+  backdrop-filter: blur(8px);
+}
+.floor-hero__badge::before {
+  content: '✦';
+  font-size: 0.48rem;
+  opacity: 0.75;
+}
+
+/* Floor title */
+.floor-hero__title {
+  font-family: var(--font-heading, 'Playfair Display', serif);
+  font-size: clamp(2.4rem, 5.5vw, 4.2rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.25rem;
+  color: #FFFFFF;
+}
+
+/* Gold rule under title */
+.floor-hero__content::after {
+  content: '';
+  display: block;
+  width: 48px;
+  height: 2px;
+  background: linear-gradient(to right, var(--flr-gold), rgba(200, 169, 106, 0.35));
+  margin: 1.4rem auto 0;
+  border-radius: 2px;
+}
+
+.floor-hero__description {
+  font-size: clamp(0.95rem, 1.6vw, 1.12rem);
+  color: rgba(255, 255, 255, 0.65);
+  line-height: 1.85;
+  max-width: 640px;
+  margin: 1.5rem auto 0;
+}
+
+/* Floor identity variants — navy with different accent glows */
+.floor-page--parking  .floor-hero { background: linear-gradient(160deg, #0A1822 0%, #0B1D2A 100%); }
+.floor-page--lobby    .floor-hero { background: linear-gradient(160deg, #0B1D2A 0%, #122030 100%); }
+.floor-page--dining   .floor-hero { background: linear-gradient(160deg, #0C1A22 0%, #0B1D2A 100%); }
+.floor-page--spa      .floor-hero { background: linear-gradient(160deg, #0B1D2A 0%, #0C1F2C 100%); }
+.floor-page--presidential .floor-hero { background: linear-gradient(160deg, #08131C 0%, #0B1D2A 100%); }
+
+/* ═══════════════════════════════════════════════════════════════
+   2. CONTENT AREA — Bright beige body
+═══════════════════════════════════════════════════════════════ */
+
+.floor-content {
+  padding: 4.5rem 0 6.5rem;
+  background: var(--flr-beige);
+}
+
+.floor-section {
+  margin-bottom: 4.5rem;
+  position: relative;
+}
+
+/* ── Section headings ── */
+.section-title {
+  font-family: var(--font-heading, 'Playfair Display', serif);
+  font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+  font-weight: 700;
+  text-align: center;
+  color: var(--flr-navy);
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.015em;
+}
+.section-title em {
+  font-style: italic;
+  color: var(--flr-gold-hover);
+}
+.section-title::after {
+  content: '';
+  display: block;
+  width: 44px;
+  height: 2px;
+  background: linear-gradient(to right, var(--flr-gold), rgba(200, 169, 106, 0.3));
+  margin: 1rem auto 2.5rem;
+  border-radius: 2px;
+}
+
+.section-subtitle {
+  font-family: var(--font-heading, 'Playfair Display', serif);
+  font-size: clamp(1.35rem, 2.5vw, 1.85rem);
+  font-weight: 700;
+  color: var(--flr-navy);
+  margin-bottom: 1.75rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--flr-gold-border);
+  letter-spacing: -0.01em;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.section-subtitle::before {
+  content: '';
+  display: inline-block;
+  width: 4px;
+  height: 1.3em;
+  background: linear-gradient(to bottom, var(--flr-gold), rgba(200, 169, 106, 0.4));
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.floor-overview {
+  margin-bottom: 4rem;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   3. STATS CARDS — White with gold accent top
+═══════════════════════════════════════════════════════════════ */
+
+.floor-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
+  gap: 1.25rem;
+  margin-top: 2.5rem;
+}
+
+.floor-stat-card {
+  position: relative;
+  padding: 1.75rem 1.25rem;
+  background: #FFFFFF;
+  border: 1px solid rgba(200, 169, 106, 0.22);
+  border-radius: 12px;
+  text-align: center;
+  cursor: default;
+  box-shadow: var(--flr-shadow-sm);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+  overflow: hidden;
+}
+/* Gold top accent bar */
+.floor-stat-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(to right, var(--flr-gold), rgba(200, 169, 106, 0.3));
+  border-radius: 12px 12px 0 0;
+}
+.floor-stat-card:hover {
+  border-color: var(--flr-gold);
+  transform: translateY(-6px);
+  box-shadow: var(--flr-shadow-hover);
+}
+
+.floor-stat-icon {
+  font-size: 2rem;
+  margin-bottom: 0.85rem;
+  display: block;
+}
+
+.floor-stat-number {
+  font-family: var(--font-heading, 'Playfair Display', serif);
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--flr-navy);
+  letter-spacing: -0.02em;
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+
+.floor-stat-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--flr-text-dim);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   4. ROOM / AREA CARDS — White cards, navy text
+═══════════════════════════════════════════════════════════════ */
+
+.room-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(275px, 1fr));
+  gap: 1.25rem;
+}
+
+.room-card {
+  position: relative;
+  padding: 1.6rem;
+  background: #FFFFFF;
+  border: 1px solid rgba(200, 169, 106, 0.2);
+  border-radius: 12px;
+  box-shadow: var(--flr-shadow-sm);
+  overflow: hidden;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+/* Gold bottom accent on hover */
+.room-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(to right, var(--flr-gold), transparent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+.room-card:hover {
+  border-color: var(--flr-gold);
+  transform: translateY(-6px);
+  box-shadow: var(--flr-shadow-hover);
+}
+.room-card:hover::after {
+  transform: scaleX(1);
+}
+
+/* Room number — navy circle */
+.room-card__number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  background: var(--flr-navy);
+  border-radius: 10px;
+  font-family: var(--font-heading, serif);
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #FFFFFF;
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em;
+}
+
+/* Service / area icon */
+.service-card__icon {
+  font-size: 2.4rem;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.room-card__header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin-bottom: 1rem;
+}
+
+.room-card__title {
+  font-family: var(--font-heading, 'Playfair Display', serif);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--flr-navy);
+  margin: 0;
+  letter-spacing: -0.01em;
+  transition: color 0.22s;
+}
+.room-card:hover .room-card__title {
+  color: var(--flr-gold-hover);
+}
+
+.room-card__type {
+  font-size: 0.82rem;
+  color: var(--flr-text-dim);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Status pills */
+.room-card__status {
+  display: inline-block;
+  padding: 0.22rem 0.8rem;
+  border-radius: 50px;
+  font-size: 0.63rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-top: 0.35rem;
+  width: fit-content;
+}
+.room-card__status--available {
+  background: rgba(107, 125, 93, 0.1);
+  color: var(--flr-olive);
+  border: 1px solid rgba(107, 125, 93, 0.3);
+}
+.room-card__status--reserved {
+  background: var(--flr-gold-light);
+  color: var(--flr-gold-hover);
+  border: 1px solid var(--flr-gold-border);
+}
+.room-card__status--occupied {
+  background: rgba(200, 80, 80, 0.08);
+  color: #B84545;
+  border: 1px solid rgba(200, 80, 80, 0.25);
+}
+
+/* Feature tags */
+.room-card__features {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.25rem;
+}
+.room-feature-tag {
+  display: inline-block;
+  font-size: 0.67rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--flr-olive);
+  background: var(--flr-beige);
+  border: 1px solid rgba(107, 125, 93, 0.2);
+  padding: 0.24rem 0.65rem;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+.room-card:hover .room-feature-tag {
+  background: var(--flr-olive-light);
+  border-color: rgba(107, 125, 93, 0.35);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   5. FEATURES LIST — Clean, bright, navy text
+═══════════════════════════════════════════════════════════════ */
+
+.features-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  gap: 0.7rem;
+}
+
+.feature-item {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  padding: 0.9rem 1.15rem;
+  background: #FFFFFF;
+  border: 1px solid rgba(200, 169, 106, 0.18);
+  border-radius: 8px;
+  box-shadow: var(--flr-shadow-sm);
+  transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+}
+.feature-item:hover {
+  border-color: var(--flr-gold);
+  transform: translateX(5px);
+  box-shadow: var(--flr-shadow-md);
+}
+
+.feature-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  background: var(--flr-gold);
+  border-radius: 50%;
+  color: #FFFFFF;
+  font-size: 0.65rem;
+  font-weight: 900;
+  flex-shrink: 0;
+}
+
+.feature-text {
+  font-size: 0.88rem;
+  color: var(--flr-text);
+  line-height: 1.5;
+  transition: color 0.22s ease;
+}
+.feature-item:hover .feature-text {
+  color: var(--flr-navy);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   6. PARKING SPECIFIC
+═══════════════════════════════════════════════════════════════ */
+
+.parking-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.25rem;
+}
+
+.parking-zone-card {
+  padding: 1.5rem;
+  background: #FFFFFF;
+  border: 1px solid rgba(200, 169, 106, 0.2);
+  border-radius: 12px;
+  box-shadow: var(--flr-shadow-sm);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.parking-zone-card:hover {
+  border-color: var(--flr-gold);
+  box-shadow: var(--flr-shadow-hover);
+}
+
+.parking-zone-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--flr-gold-border);
+}
+.parking-zone-header h4 {
+  font-family: var(--font-heading, serif);
+  font-size: 1.12rem;
+  font-weight: 700;
+  color: var(--flr-navy);
+}
+
+.parking-status {
+  padding: 0.22rem 0.75rem;
+  border-radius: 50px;
+  font-size: 0.62rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+.parking-status--available {
+  background: var(--flr-olive-light);
+  color: var(--flr-olive);
+  border: 1px solid rgba(107, 125, 93, 0.28);
+}
+.parking-status--reserved {
+  background: var(--flr-gold-light);
+  color: var(--flr-gold-hover);
+  border: 1px solid var(--flr-gold-border);
+}
+.parking-status--active {
+  background: rgba(59, 130, 246, 0.08);
+  color: #2563EB;
+  border: 1px solid rgba(59, 130, 246, 0.25);
+}
+.parking-status--premium {
+  background: rgba(139, 92, 246, 0.08);
+  color: #7C3AED;
+  border: 1px solid rgba(139, 92, 246, 0.25);
+}
+
+.parking-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  font-size: 0.85rem;
+}
+.parking-label { color: var(--flr-text-dim); }
+.parking-value { color: var(--flr-navy); font-weight: 600; }
+
+.parking-visualization {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 0.4rem;
+  padding: 1rem;
+  background: var(--flr-beige);
+  border-radius: 8px;
+  margin-top: 1rem;
+  border: 1px solid var(--flr-gold-border);
+}
+.parking-slot {
+  aspect-ratio: 1;
+  background: #FFFFFF;
+  border: 1px solid rgba(200, 169, 106, 0.25);
+  border-radius: 3px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.parking-slot:hover {
+  background: var(--flr-gold);
+  border-color: var(--flr-gold);
+  transform: scale(1.12);
+}
+.parking-more {
+  grid-column: 1 / -1;
+  text-align: center;
+  color: var(--flr-text-dim);
+  font-size: 0.78rem;
+  padding: 0.3rem 0;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   7. FACILITIES GRID
+═══════════════════════════════════════════════════════════════ */
+
+.facilities-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.25rem;
+}
+
+.facility-card {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  padding: 1.35rem;
+  background: #FFFFFF;
+  border: 1px solid rgba(200, 169, 106, 0.2);
+  border-radius: 10px;
+  box-shadow: var(--flr-shadow-sm);
+  transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+}
+.facility-card:hover {
+  border-color: var(--flr-gold);
+  transform: translateX(5px);
+  box-shadow: var(--flr-shadow-md);
+}
+
+.facility-icon {
+  font-size: 2.2rem;
+  flex-shrink: 0;
+}
+.facility-info h4 {
+  font-family: var(--font-heading, serif);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--flr-navy);
+  margin-bottom: 0.2rem;
+}
+.facility-info p {
+  font-size: 0.82rem;
+  color: var(--flr-text-dim);
+  line-height: 1.5;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   8. INTERACTIVE FLOOR MAP WRAPPER
+═══════════════════════════════════════════════════════════════ */
+
+.floor-section .interactive-map-container,
+.floor-section [class*="floor-map"] {
+  border: 1px solid var(--flr-gold-border);
+  border-radius: 12px;
+  overflow: hidden;
+  background: #FFFFFF;
+  box-shadow: var(--flr-shadow-sm);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   9. BACK BUTTON OVERRIDE
+═══════════════════════════════════════════════════════════════ */
+
+.floor-page .back-button,
+.floor-page [class*="back-btn"],
+.floor-page [class*="BackButton"] {
+  position: fixed;
+  top: 80px;
+  left: 1.5rem;
+  z-index: 50;
+  background: rgba(245, 240, 230, 0.90);
+  border: 1px solid var(--flr-gold-border);
+  color: var(--flr-navy);
+  backdrop-filter: blur(12px);
+  border-radius: 6px;
+  padding: 0.5rem 1rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: var(--flr-shadow-sm);
+}
+.floor-page .back-button:hover {
+  background: #FFFFFF;
+  border-color: var(--flr-gold);
+  box-shadow: var(--flr-shadow-md);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   10. SECTION ALTERNATION — slight gradient on alternate sections
+═══════════════════════════════════════════════════════════════ */
+
+.floor-section:nth-child(even) {
+  padding: 2.5rem;
+  background: linear-gradient(135deg, #FFFFFF 0%, var(--flr-beige-card) 100%);
+  border: 1px solid rgba(200, 169, 106, 0.14);
+  border-radius: 16px;
+  box-shadow: var(--flr-shadow-sm);
+  margin-left: -0.5rem;
+  margin-right: -0.5rem;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   9B. SERVICE GRID & CARDS (dining, wellness, area cards)
+═══════════════════════════════════════════════════════════════ */
+
+.service-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1.25rem;
+}
+
+.service-card {
+  position: relative;
+  padding: 1.75rem 1.5rem;
+  background: #FFFFFF;
+  border: 1px solid rgba(200, 169, 106, 0.2);
+  border-radius: 14px;
+  box-shadow: var(--flr-shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  overflow: hidden;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.service-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(to right, var(--flr-gold), rgba(200, 169, 106, 0.25));
+  border-radius: 14px 14px 0 0;
+}
+
+.service-card:hover {
+  border-color: var(--flr-gold);
+  box-shadow: var(--flr-shadow-hover);
+  transform: translateY(-5px);
+}
+
+.service-card__icon {
+  font-size: 2.4rem;
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.service-card__title {
+  font-family: var(--font-heading, 'Playfair Display', serif);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--flr-navy);
+  margin: 0;
+  letter-spacing: -0.01em;
+  transition: color 0.2s;
+}
+
+.service-card:hover .service-card__title { color: var(--flr-gold-hover); }
+
+.service-card__description {
+  font-size: 0.85rem;
+  color: var(--flr-text);
+  line-height: 1.6;
+}
+
+.service-card__description p { margin: 0.1rem 0; }
+
+.service-card__hours {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--flr-gold-hover);
+  background: var(--flr-gold-light);
+  border: 1px solid var(--flr-gold-border);
+  border-radius: 6px;
+  padding: 0.28rem 0.65rem;
+  margin-top: auto;
+  width: fit-content;
+  letter-spacing: 0.03em;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   9C. FLOOR MAP / AREA GRID
+═══════════════════════════════════════════════════════════════ */
+
+.floor-map {
+  background: #FFFFFF;
+  border: 1px solid rgba(200, 169, 106, 0.2);
+  border-radius: 16px;
+  padding: 1.75rem;
+  box-shadow: var(--flr-shadow-sm);
+}
+
+.floor-map__title {
+  font-family: var(--font-heading, 'Playfair Display', serif);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--flr-navy);
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--flr-gold-border);
+  letter-spacing: -0.01em;
+}
+
+.floor-map__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 0.85rem;
+}
+
+.floor-map__area {
+  padding: 1.25rem 1rem;
+  background: var(--flr-beige);
+  border: 1px solid rgba(200, 169, 106, 0.15);
+  border-radius: 10px;
+  text-align: center;
+  cursor: default;
+  transition: border-color 0.25s ease, background 0.25s ease, transform 0.25s ease;
+}
+
+.floor-map__area:hover {
+  border-color: var(--flr-gold);
+  background: var(--flr-gold-light);
+  transform: translateY(-3px);
+}
+
+.floor-map__area-icon {
+  font-size: 2rem;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.floor-map__area-name {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--flr-navy);
+  line-height: 1.3;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   11. RESPONSIVE
+═══════════════════════════════════════════════════════════════ */
+
+@media (max-width: 768px) {
+  .floor-hero {
+    min-height: 48vh;
+    padding: 4.5rem 0 3.5rem;
+  }
+  .floor-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .room-grid {
+    grid-template-columns: 1fr;
+  }
+  .features-list {
+    grid-template-columns: 1fr;
+  }
+  .facilities-grid {
+    grid-template-columns: 1fr;
+  }
+  .service-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .floor-map__grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .floor-content {
+    padding: 3.5rem 0 5rem;
+  }
+  .floor-section:nth-child(even) {
+    margin-left: 0;
+    margin-right: 0;
+    padding: 1.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .service-grid { grid-template-columns: 1fr; }
+  .floor-map__grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 500px) {
+  .floor-stats {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.85rem;
+  }
+  .floor-stat-number {
+    font-size: 1.8rem;
+  }
+  .section-title {
+    font-size: 1.55rem;
+  }
+}

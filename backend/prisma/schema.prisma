@@ -1,0 +1,467 @@
+// ═══════════════════════════════════════════════════════════════
+//  PRESIDENTIAL LUXURY HOTEL — Prisma Schema
+//  Database: MySQL 8.0+
+//  ORM: Prisma 5.x
+// ═══════════════════════════════════════════════════════════════
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+// ── Users & Authentication ──────────────────────────────────────
+
+model User {
+  id        String   @id @default(uuid()) @db.VarChar(36)
+  email     String   @unique @db.VarChar(191)
+  password  String   @db.VarChar(255)
+  role      String   @default("GUEST_NEW") @db.VarChar(50)
+  firstName String   @db.VarChar(100)
+  lastName  String   @db.VarChar(100)
+  phone     String?  @db.VarChar(25)
+  idNumber  String?  @unique @db.VarChar(50)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  bookings            Booking[]
+  messages            ChatMessage[]
+  chatSessions        ChatSession[]        @relation("UserChats")
+  guestProfile        GuestProfile?
+  staffProfile        StaffProfile?
+  serviceBookings     ServiceBooking[]
+  orders              Order[]
+  parkingReservations ParkingReservation[]
+
+  @@index([email])
+  @@index([role])
+  @@map("users")
+}
+
+model GuestProfile {
+  id           String   @id @default(uuid()) @db.VarChar(36)
+  userId       String   @unique @db.VarChar(36)
+  isFirstVisit Boolean  @default(true)
+  totalStays   Int      @default(0)
+  totalSpent   Float    @default(0) @db.Double
+  discountRate Float    @default(0) @db.Double
+  preferences  String?  @db.Text
+  specialNeeds String?  @db.Text
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@map("guest_profiles")
+}
+
+model StaffProfile {
+  id         String   @id @default(uuid()) @db.VarChar(36)
+  userId     String   @unique @db.VarChar(36)
+  department String   @db.VarChar(100)
+  position   String   @db.VarChar(100)
+  hireDate   DateTime @default(now())
+  salary     Float?   @db.Double
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  assignedSessions ChatSession[] @relation("StaffChats")
+  user             User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([department])
+  @@map("staff_profiles")
+}
+
+// ── Hotel Structure ─────────────────────────────────────────────
+
+model Floor {
+  id          String   @id @default(uuid()) @db.VarChar(36)
+  floorNumber Int      @unique
+  name        String   @db.VarChar(100)
+  description String?  @db.Text
+  image       String?  @db.VarChar(500)
+  order       Int      @default(0)
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  rooms Room[]
+
+  @@index([floorNumber])
+  @@index([order])
+  @@index([isActive])
+  @@map("floors")
+}
+
+model Feature {
+  id          String   @id @default(uuid()) @db.VarChar(36)
+  name        String   @unique @db.VarChar(191)
+  description String?  @db.Text
+  icon        String?  @db.VarChar(100)
+  image       String?  @db.VarChar(500)
+  category    String   @default("room") @db.VarChar(50)
+  isActive    Boolean  @default(true)
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([category])
+  @@index([order])
+  @@index([isActive])
+  @@map("features")
+}
+
+// ── Rooms ───────────────────────────────────────────────────────
+
+model Room {
+  id           String    @id @default(uuid()) @db.VarChar(36)
+  roomNumber   String    @unique @db.VarChar(20)
+  floor        Int
+  floorId      String?   @db.VarChar(36)
+  section      String    @default("A") @db.VarChar(50)
+  type         String    @default("STANDARD") @db.VarChar(50)
+  status       String    @default("AVAILABLE") @db.VarChar(50)
+  capacity     Int
+  size         Float?    @db.Double
+  basePrice    Float     @db.Double
+  currentPrice Float     @db.Double
+  features     String    @default(dbgenerated("('[]')")) @db.LongText
+  amenities    String    @default(dbgenerated("('[]')")) @db.LongText
+  images       String?   @db.Text
+  description  String?   @db.Text
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  bookings Booking[]
+  floorRef Floor?    @relation(fields: [floorId], references: [id])
+
+  @@index([status])
+  @@index([floor])
+  @@index([floorId])
+  @@index([type])
+  @@index([roomNumber])
+  @@index([currentPrice])
+  @@index([capacity])
+  @@map("rooms")
+}
+
+// ── Bookings ────────────────────────────────────────────────────
+
+model Booking {
+  id               String   @id @default(uuid()) @db.VarChar(36)
+  bookingNumber    String   @unique @db.VarChar(50)
+  userId           String   @db.VarChar(36)
+  roomId           String   @db.VarChar(36)
+  checkInDate      DateTime
+  checkOutDate     DateTime
+  numberOfGuests   Int
+  status           String   @default("PENDING") @db.VarChar(50)
+  totalPrice       Float    @db.Double
+  discountApplied  Float    @default(0) @db.Double
+  finalPrice       Float    @db.Double
+  specialRequests  String?  @db.Text
+  guestPreferences String?  @db.Text
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  room                Room                 @relation(fields: [roomId], references: [id])
+  user                User                 @relation(fields: [userId], references: [id])
+  serviceBookings     ServiceBooking[]
+  orders              Order[]
+  parkingReservations ParkingReservation[]
+
+  @@index([userId])
+  @@index([roomId])
+  @@index([status])
+  @@index([bookingNumber])
+  @@index([checkInDate])
+  @@index([checkOutDate])
+  @@index([createdAt])
+  @@map("bookings")
+}
+
+// ── Chat System ─────────────────────────────────────────────────
+
+model ChatSession {
+  id        String   @id @default(uuid()) @db.VarChar(36)
+  guestId   String   @db.VarChar(36)
+  staffId   String?  @db.VarChar(36)
+  status    String   @default("active") @db.VarChar(50)
+  guestData String?  @db.Text
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  messages ChatMessage[]
+  guest    User          @relation("UserChats", fields: [guestId], references: [id])
+  staff    StaffProfile? @relation("StaffChats", fields: [staffId], references: [id])
+
+  @@index([guestId])
+  @@index([staffId])
+  @@index([status])
+  @@index([createdAt])
+  @@map("chat_sessions")
+}
+
+model ChatMessage {
+  id          String   @id @default(uuid()) @db.VarChar(36)
+  sessionId   String   @db.VarChar(36)
+  senderId    String   @db.VarChar(36)
+  message     String   @db.Text
+  messageType String   @default("text") @db.VarChar(50)
+  metadata    String?  @db.Text
+  createdAt   DateTime @default(now())
+
+  sender  User        @relation(fields: [senderId], references: [id])
+  session ChatSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+
+  @@index([sessionId])
+  @@index([senderId])
+  @@index([createdAt])
+  @@map("chat_messages")
+}
+
+// ── Parking ─────────────────────────────────────────────────────
+
+model ParkingSpot {
+  id          String   @id @default(uuid()) @db.VarChar(36)
+  spotNumber  String   @unique @db.VarChar(20)
+  floor       Int
+  floorId     String?  @db.VarChar(36)
+  type        String   @default("STANDARD") @db.VarChar(50)
+  status      String   @default("AVAILABLE") @db.VarChar(50)
+  description String?  @db.Text
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([floor])
+  @@index([status])
+  @@index([type])
+  @@map("parking_spots")
+}
+
+// A persisted parking reservation, linked to the guest and (optionally) their
+// room booking. Shown in the guest's Profile. (Phase C)
+model ParkingReservation {
+  id                String   @id @default(uuid()) @db.VarChar(36)
+  reservationNumber String   @unique @db.VarChar(50)
+  userId            String?  @db.VarChar(36)
+  roomBookingId     String?  @db.VarChar(36)
+  guestName         String   @db.VarChar(191)
+  guestEmail        String   @db.VarChar(191)
+  spotNumber        String   @db.VarChar(20)
+  parkingType       String   @default("self") @db.VarChar(50)
+  reservationDate   DateTime
+  startTime         String?  @db.VarChar(50)
+  endTime           String?  @db.VarChar(50)
+  status            String   @default("CONFIRMED") @db.VarChar(50)
+  price             Float    @default(0) @db.Double
+  notes             String?  @db.Text
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  user        User?    @relation(fields: [userId], references: [id])
+  roomBooking Booking? @relation(fields: [roomBookingId], references: [id])
+
+  @@index([userId])
+  @@index([roomBookingId])
+  @@index([guestEmail])
+  @@index([reservationDate])
+  @@index([status])
+  @@map("parking_reservations")
+}
+
+// ── Admin ───────────────────────────────────────────────────────
+
+model Admin {
+  id           String   @id @default(uuid()) @db.VarChar(36)
+  username     String   @unique @default("admin") @db.VarChar(100)
+  passwordHash String   @db.VarChar(255)
+  passwordHint String   @default("amar") @db.VarChar(255)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@map("admins")
+}
+
+// ── Market / Store ──────────────────────────────────────────────
+
+model FoodItem {
+  id          String   @id @default(uuid()) @db.VarChar(36)
+  name        String   @db.VarChar(255)
+  description String?  @db.Text
+  category    String   @db.VarChar(100)
+  price       Float    @db.Double
+  image       String?  @db.VarChar(500)
+  isAvailable Boolean  @default(true)
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([category])
+  @@index([order])
+  @@index([isAvailable])
+  @@map("food_items")
+}
+
+model StoreItem {
+  id          String      @id @default(uuid()) @db.VarChar(36)
+  name        String      @db.VarChar(255)
+  nameAr      String?     @db.VarChar(255)
+  description String?     @db.Text
+  category    String      @db.VarChar(100)
+  price       Float       @db.Double
+  quantity    Int         @default(0)
+  image       String?     @db.VarChar(500)
+  isAvailable Boolean     @default(true)
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+
+  orderItems OrderItem[]
+
+  @@index([category])
+  @@index([isAvailable])
+  @@map("store_items")
+}
+
+model Order {
+  id            String   @id @default(uuid()) @db.VarChar(36)
+  orderNumber   String   @unique @db.VarChar(50)
+  userId        String?  @db.VarChar(36)
+  roomBookingId String?  @db.VarChar(36)
+  clientName    String   @db.VarChar(191)
+  roomNumber    String   @db.VarChar(20)
+  orderType     String   @default("MARKET") @db.VarChar(50)
+  status        String   @default("PENDING") @db.VarChar(50)
+  totalPrice    Float    @db.Double
+  notes         String?  @db.Text
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  items       OrderItem[]
+  user        User?       @relation(fields: [userId], references: [id])
+  roomBooking Booking?    @relation(fields: [roomBookingId], references: [id])
+
+  @@index([status])
+  @@index([roomNumber])
+  @@index([userId])
+  @@index([roomBookingId])
+  @@index([createdAt])
+  @@map("orders")
+}
+
+model OrderItem {
+  id        String   @id @default(uuid()) @db.VarChar(36)
+  orderId   String   @db.VarChar(36)
+  itemId    String   @db.VarChar(36)
+  quantity  Int
+  price     Float    @db.Double
+  createdAt DateTime @default(now())
+
+  order Order     @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  item  StoreItem @relation(fields: [itemId], references: [id])
+
+  @@index([orderId])
+  @@index([itemId])
+  @@map("order_items")
+}
+
+// ── AI Concierge Analytics ──────────────────────────────────────
+
+model ConciergeSession {
+  id           String   @id @default(uuid()) @db.VarChar(36)
+  sessionToken String   @unique @db.VarChar(100)
+  language     String   @default("en") @db.VarChar(5)
+  totalMessages Int     @default(0)
+
+  // Extracted guest needs
+  detectedGuests   Int?
+  detectedBudget   Float?  @db.Double
+  detectedDuration Int?
+  detectedPurpose  String? @db.VarChar(50)
+
+  // Individual preference flags (easy to aggregate in analytics)
+  prefSpa     Boolean @default(false)
+  prefView    Boolean @default(false)
+  prefButler  Boolean @default(false)
+  prefQuiet   Boolean @default(false)
+  prefBalcony Boolean @default(false)
+  prefPool    Boolean @default(false)
+  prefSuite   Boolean @default(false)
+
+  // Recommendation outcome
+  recommendedRoomId   String? @db.VarChar(36)
+  recommendedRoomNum  String? @db.VarChar(20)
+  recommendedRoomType String? @db.VarChar(50)
+  recommendedScore    Int?
+  recommendationShown Boolean @default(false)
+
+  // Booking outcome
+  bookingInitiated Boolean @default(false)
+
+  startedAt    DateTime @default(now())
+  lastActiveAt DateTime @updatedAt
+
+  events ConciergeEvent[]
+
+  @@index([language])
+  @@index([detectedPurpose])
+  @@index([recommendedRoomType])
+  @@index([bookingInitiated])
+  @@index([recommendationShown])
+  @@index([startedAt])
+  @@map("concierge_sessions")
+}
+
+model ConciergeEvent {
+  id        String   @id @default(uuid()) @db.VarChar(36)
+  sessionId String   @db.VarChar(36)
+  eventType String   @db.VarChar(50)
+  eventData String?  @db.Text
+  createdAt DateTime @default(now())
+
+  session ConciergeSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+
+  @@index([sessionId])
+  @@index([eventType])
+  @@index([createdAt])
+  @@map("concierge_events")
+}
+
+// ── Services ────────────────────────────────────────────────────
+
+model ServiceBooking {
+  id            String   @id @default(uuid()) @db.VarChar(36)
+  bookingNumber String   @unique @db.VarChar(50)
+  serviceType   String   @db.VarChar(100)
+  userId        String?  @db.VarChar(36)
+  roomBookingId String?  @db.VarChar(36)
+  guestName     String   @db.VarChar(191)
+  guestEmail    String   @db.VarChar(191)
+  guestPhone    String?  @db.VarChar(25)
+  roomNumber    String?  @db.VarChar(20)
+  bookingDate   DateTime
+  startTime     String?  @db.VarChar(50)
+  duration      String?  @db.VarChar(50)
+  totalPrice    Float    @db.Double
+  status        String   @default("PENDING") @db.VarChar(50)
+  formData      String   @db.LongText
+  notes         String?  @db.Text
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  user        User?    @relation(fields: [userId], references: [id])
+  roomBooking Booking? @relation(fields: [roomBookingId], references: [id])
+
+  @@index([serviceType])
+  @@index([status])
+  @@index([guestEmail])
+  @@index([bookingDate])
+  @@index([roomBookingId])
+  @@index([createdAt])
+  @@map("service_bookings")
+}

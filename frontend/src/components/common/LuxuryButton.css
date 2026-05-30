@@ -1,0 +1,136 @@
+/* ═══════════════════════════════════════════════════════════
+   LUXURY BUTTON — Professional 5-star hotel sizing
+   ═══════════════════════════════════════════════════════════ */
+
+.luxury-btn {
+  position: relative;
+  overflow: hidden;
+  font-family: var(--font-body);
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: var(--transition-elegant);
+  border: none;
+  outline: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.luxury-btn__content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+/* Shine sweep */
+.luxury-btn__shine {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.22) 50%,
+    transparent 100%
+  );
+  transition: left 0.5s ease;
+  z-index: 1;
+}
+.luxury-btn:hover .luxury-btn__shine { left: 100%; }
+
+/* ── Primary: Gold ─────────────────────────────────────── */
+.luxury-btn--primary {
+  background: linear-gradient(135deg, var(--royal-gold), var(--gold-accent));
+  color: #FFFFFF;
+  box-shadow: 0 4px 18px rgba(200, 169, 106, 0.32);
+}
+.luxury-btn--primary:hover:not(:disabled) {
+  box-shadow: 0 8px 28px rgba(200, 169, 106, 0.48);
+  transform: translateY(-2px);
+}
+.luxury-btn--primary:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+/* ── Secondary: Navy Outline ───────────────────────────── */
+.luxury-btn--secondary {
+  background: transparent;
+  color: var(--navy);
+  border: 2px solid var(--navy);
+}
+.luxury-btn--secondary:hover:not(:disabled) {
+  background: var(--navy);
+  color: #FAFAF8;
+  box-shadow: var(--shadow-navy);
+}
+
+/* ── Outline: Gold border ──────────────────────────────── */
+.luxury-btn--outline {
+  background: transparent;
+  color: var(--royal-gold);
+  border: 1.5px solid var(--royal-gold);
+}
+.luxury-btn--outline:hover:not(:disabled) {
+  background: var(--royal-gold);
+  color: #FFFFFF;
+}
+
+/* ── Ghost ─────────────────────────────────────────────── */
+.luxury-btn--ghost {
+  background: transparent;
+  color: var(--royal-gold);
+}
+.luxury-btn--ghost:hover:not(:disabled) {
+  background: var(--badge-bg);
+}
+
+/* ── Dark (Navy) ───────────────────────────────────────── */
+.luxury-btn--dark {
+  background: var(--navy);
+  color: #FAFAF8;
+  border: 1.5px solid var(--navy);
+}
+.luxury-btn--dark:hover:not(:disabled) {
+  background: var(--royal-gold);
+  color: #FFFFFF;
+  border-color: var(--royal-gold);
+}
+
+/* ── Sizes — Professional hotel dimensions ─────────────── */
+/* small: ~44px effective height */
+.luxury-btn--small  {
+  padding: 0.75rem 1.75rem;
+  font-size: 0.9375rem;
+  min-height: 44px;
+}
+
+/* medium: ~52px effective height */
+.luxury-btn--medium {
+  padding: 0.875rem 1.875rem;
+  font-size: 1.0625rem;
+  min-height: 52px;
+}
+
+/* large: ~56px effective height */
+.luxury-btn--large  {
+  padding: 1rem 2.25rem;
+  font-size: 1.125rem;
+  min-height: 56px;
+}
+
+.luxury-btn--full   { width: 100%; }
+
+/* ── Disabled ──────────────────────────────────────────── */
+.luxury-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none !important;
+  box-shadow: none !important;
+}

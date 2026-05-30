@@ -1,0 +1,87 @@
+.about-page {
+  min-height: 100vh;
+  padding: 2rem 0;
+  background: var(--bg-primary, #F7F5F2);
+}
+
+.about-hero {
+  text-align: center;
+  padding: 4rem 2rem;
+  background: linear-gradient(135deg, var(--royal-gold) 0%, var(--gold-accent) 100%);
+  color: white;
+  margin-bottom: 3rem;
+}
+
+.about-hero h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.about-subtitle {
+  font-size: 1.2rem;
+  opacity: 0.9;
+}
+
+.about-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.about-section {
+  margin-bottom: 3rem;
+}
+
+.about-section h2 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: var(--royal-gold);
+}
+
+.about-section p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--text-primary);
+}
+
+.facilities-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.facility-card {
+  padding: 2rem;
+  background: #FFFFFF;
+  border: 1px solid rgba(198, 161, 91, 0.2);
+  border-radius: 12px;
+  text-align: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(46, 46, 46, 0.08);
+}
+
+.facility-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--royal-gold);
+  box-shadow: 0 10px 30px rgba(198, 161, 91, 0.15);
+}
+
+.facility-icon {
+  font-size: 3rem;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.facility-card h3 {
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+  color: var(--royal-gold);
+}
+
+.facility-card p {
+  font-size: 1rem;
+  color: var(--text-primary, #2E2E2E);
+  opacity: 0.7;
+}

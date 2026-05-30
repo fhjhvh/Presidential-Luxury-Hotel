@@ -1,0 +1,82 @@
+.language-switcher {
+  position: relative;
+}
+
+.language-switcher__button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.45rem 0.65rem;
+  border-radius: 10px;
+  background: var(--bg-card, rgba(255, 255, 255, 0.08));
+  border: 1px solid var(--border-gold, rgba(201, 164, 76, 0.35));
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: var(--text-primary, #2D2A26);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.language-switcher__button:hover {
+  border-color: rgba(201, 164, 76, 0.35);
+  box-shadow: 0 0 20px rgba(201, 164, 76, 0.12);
+}
+
+.language-switcher__label {
+  font-weight: 600;
+}
+
+.language-switcher__chevron {
+  opacity: 0.75;
+  transition: transform 0.18s ease;
+}
+
+.language-switcher__chevron--open {
+  transform: rotate(180deg);
+}
+
+.language-switcher__menu {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  min-width: 90px;
+  padding: 0.4rem;
+  border-radius: 14px;
+  background: rgba(11, 11, 11, 0.86);
+  border: 1px solid rgba(201, 164, 76, 0.18);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  z-index: 1100;
+}
+
+[dir="rtl"] .language-switcher__menu {
+  right: auto;
+  left: 0;
+}
+
+.language-switcher__item {
+  width: 100%;
+  text-align: left;
+  padding: 0.55rem 0.6rem;
+  border-radius: 10px;
+  color: var(--marble-white);
+  font-size: 0.82rem;
+  letter-spacing: 0.5px;
+}
+
+[dir="rtl"] .language-switcher__item {
+  text-align: right;
+}
+
+.language-switcher__item:hover {
+  background: rgba(201, 164, 76, 0.08);
+  color: var(--royal-gold);
+}
+
+.language-switcher__item--active {
+  background: rgba(201, 164, 76, 0.12);
+  color: var(--royal-gold);
+}

@@ -1,0 +1,739 @@
+/* ═══════════════════════════════════════════════════════════════
+   FLOORS OVERVIEW — Bright Luxury Redesign
+   Prefix: .fo
+   Palette: Beige #F5F0E6 · Navy #0B1D2A · Gold #C8A96A · Olive #6B7D5D · White #FFFFFF
+═══════════════════════════════════════════════════════════════ */
+
+/* ── Design Tokens ───────────────────────────────────────────── */
+.fo {
+  --fo-beige:        #F5F0E6;
+  --fo-beige-soft:   #EDE7D9;
+  --fo-beige-card:   #FAF7F2;
+  --fo-navy:         #0B1D2A;
+  --fo-navy-mid:     #142638;
+  --fo-navy-light:   rgba(11, 29, 42, 0.07);
+  --fo-gold:         #C8A96A;
+  --fo-gold-hover:   #B8943E;
+  --fo-gold-light:   rgba(200, 169, 106, 0.15);
+  --fo-gold-border:  rgba(200, 169, 106, 0.3);
+  --fo-olive:        #6B7D5D;
+  --fo-olive-light:  rgba(107, 125, 93, 0.12);
+  --fo-text:         rgba(11, 29, 42, 0.68);
+  --fo-text-dim:     rgba(11, 29, 42, 0.42);
+  --fo-shadow-sm:    0 2px 12px rgba(11, 29, 42, 0.07);
+  --fo-shadow-md:    0 8px 32px rgba(11, 29, 42, 0.10);
+  --fo-shadow-hover: 0 20px 56px rgba(11, 29, 42, 0.14);
+
+  min-height: 100vh;
+  background: var(--fo-beige);
+  color: var(--fo-navy);
+  font-family: var(--font-body, 'Inter', sans-serif);
+}
+
+.fo__container {
+  max-width: 1340px;
+  margin: 0 auto;
+  padding: 0 1.75rem;
+  position: relative;
+  z-index: 2;
+  width: 100%;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   1. HERO — Navy header for depth and impact
+═══════════════════════════════════════════════════════════════ */
+
+.fo__hero {
+  position: relative;
+  min-height: 68vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 7rem 0 5rem;
+  overflow: hidden;
+  isolation: isolate;
+  background: var(--fo-navy);
+}
+
+/* Warm beige glow from below blending into hero */
+.fo__hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background:
+    radial-gradient(ellipse 80% 50% at 50% 0%, rgba(200, 169, 106, 0.12) 0%, transparent 65%),
+    radial-gradient(ellipse 60% 40% at 15% 80%, rgba(200, 169, 106, 0.07) 0%, transparent 55%),
+    radial-gradient(ellipse 50% 40% at 85% 70%, rgba(107, 125, 93, 0.06) 0%, transparent 55%);
+}
+
+/* Subtle diagonal linen texture */
+.fo__hero-grid {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-image:
+    repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 40px,
+      rgba(200, 169, 106, 0.025) 40px,
+      rgba(200, 169, 106, 0.025) 41px
+    );
+  mask-image: radial-gradient(ellipse 100% 100% at 50% 50%, black 0%, transparent 90%);
+}
+
+/* Ambient accent orbs */
+.fo__orb {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+}
+.fo__orb--1 {
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(200, 169, 106, 0.08) 0%, transparent 70%);
+  top: -150px; left: -80px;
+  filter: blur(70px);
+}
+.fo__orb--2 {
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(107, 125, 93, 0.07) 0%, transparent 70%);
+  bottom: -60px; right: -60px;
+  filter: blur(60px);
+}
+.fo__orb--3 {
+  width: 280px; height: 280px;
+  background: radial-gradient(circle, rgba(200, 169, 106, 0.06) 0%, transparent 70%);
+  top: 35%; left: 65%;
+  filter: blur(55px);
+}
+
+/* Hero content */
+.fo__hero-content {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  position: relative;
+  z-index: 2;
+}
+
+.fo__hero-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--fo-gold);
+  margin-bottom: 1.75rem;
+}
+.fo__kicker-line {
+  display: block;
+  width: 36px;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--fo-gold));
+  opacity: 0.6;
+}
+.fo__kicker-line:last-child {
+  background: linear-gradient(to left, transparent, var(--fo-gold));
+}
+
+.fo__hero-title {
+  font-family: var(--font-heading, 'Playfair Display', serif);
+  font-size: clamp(2.6rem, 6vw, 5.2rem);
+  font-weight: 800;
+  color: #FFFFFF;
+  line-height: 1.08;
+  letter-spacing: -0.025em;
+  margin-bottom: 1.5rem;
+}
+.fo__hero-title em {
+  font-style: italic;
+  color: var(--fo-gold);
+}
+
+.fo__hero-sub {
+  font-size: clamp(0.95rem, 1.6vw, 1.15rem);
+  color: rgba(255, 255, 255, 0.62);
+  line-height: 1.85;
+  max-width: 600px;
+  margin: 0 auto 2.5rem;
+}
+
+.fo__hero-line {
+  width: 56px;
+  height: 2px;
+  background: linear-gradient(to right, var(--fo-gold), rgba(200, 169, 106, 0.4));
+  margin: 0 auto;
+  border-radius: 2px;
+  transform-origin: left;
+}
+
+/* ── Stats bar — glass panel on navy ── */
+.fo__stats {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  margin: 3.5rem auto 0;
+  max-width: 680px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(200, 169, 106, 0.28);
+  border-radius: 12px;
+  backdrop-filter: blur(20px);
+  overflow: hidden;
+  position: relative;
+  z-index: 2;
+}
+.fo__stats::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--fo-gold), transparent);
+  opacity: 0.5;
+}
+
+.fo__stat {
+  flex: 1;
+  text-align: center;
+  padding: 1.6rem 0.75rem;
+  position: relative;
+}
+.fo__stat-divider {
+  position: absolute;
+  right: 0; top: 22%; bottom: 22%;
+  width: 1px;
+  background: rgba(200, 169, 106, 0.22);
+}
+.fo__stat-num {
+  display: block;
+  font-family: var(--font-heading, serif);
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--fo-gold);
+  line-height: 1;
+  margin-bottom: 0.45rem;
+  letter-spacing: -0.02em;
+}
+.fo__stat-label {
+  font-size: 0.63rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.42);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   2. FILTER BAR — Beige sticky bar
+═══════════════════════════════════════════════════════════════ */
+
+.fo__filter-bar {
+  position: sticky;
+  top: 64px;
+  z-index: 40;
+  background: rgba(245, 240, 230, 0.96);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(200, 169, 106, 0.2);
+  padding: 0.85rem 0;
+  box-shadow: 0 2px 16px rgba(11, 29, 42, 0.06);
+}
+
+.fo__filters {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.fo__filter-btn {
+  padding: 0.48rem 1.25rem;
+  background: transparent;
+  border: 1px solid rgba(11, 29, 42, 0.15);
+  border-radius: 50px;
+  color: var(--fo-text);
+  font-size: 0.775rem;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.22s ease;
+  white-space: nowrap;
+}
+.fo__filter-btn:hover {
+  border-color: var(--fo-gold);
+  color: var(--fo-navy);
+  background: var(--fo-gold-light);
+}
+.fo__filter-btn--active {
+  background: var(--fo-navy) !important;
+  border-color: var(--fo-navy) !important;
+  color: #FFFFFF !important;
+  font-weight: 700;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   3. FLOOR CARDS GRID — Bright, airy, premium
+═══════════════════════════════════════════════════════════════ */
+
+.fo__floors {
+  padding: 4rem 0 6rem;
+  background: var(--fo-beige);
+}
+
+.fo__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+  gap: 1.5rem;
+}
+
+/* ── Card ── */
+.fo__card {
+  position: relative;
+  background: #FFFFFF;
+  border: 1px solid rgba(200, 169, 106, 0.18);
+  border-radius: 14px;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: var(--fo-shadow-sm);
+  transition:
+    border-color 0.32s ease,
+    box-shadow 0.32s ease,
+    transform 0.28s ease;
+  will-change: transform;
+}
+.fo__card:hover {
+  border-color: var(--fo-gold);
+  box-shadow: var(--fo-shadow-hover);
+}
+
+/* VIP card — warm cream premium feel */
+.fo__card--vip {
+  background: linear-gradient(155deg, #FFFDF7 0%, #FFF8ED 55%, #FFFCF5 100%);
+  border-color: rgba(200, 169, 106, 0.35);
+}
+.fo__card--vip:hover {
+  border-color: var(--fo-gold);
+  box-shadow: 0 24px 64px rgba(200, 169, 106, 0.22), 0 4px 16px rgba(11, 29, 42, 0.08);
+}
+
+/* ── Card image ── */
+.fo__card-img {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+}
+.fo__card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+.fo__card:hover .fo__card-img img {
+  transform: scale(1.07);
+}
+
+/* Softer overlay — bright not dark */
+.fo__card-img-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(11, 29, 42, 0.04) 0%,
+    rgba(11, 29, 42, 0.55) 100%
+  );
+  transition: opacity 0.32s ease;
+}
+.fo__card:hover .fo__card-img-overlay {
+  opacity: 0.75;
+}
+
+/* Gold bottom accent bar */
+.fo__card-hover-bar {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 2.5px;
+  background: linear-gradient(to right, var(--fo-gold), rgba(200, 169, 106, 0.3));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.38s ease;
+}
+.fo__card:hover .fo__card-hover-bar {
+  transform: scaleX(1);
+}
+
+/* ── Badges ── */
+.fo__badge {
+  position: absolute;
+  top: 12px;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.3rem 0.8rem;
+  border-radius: 50px;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+.fo__badge--vip {
+  right: 12px;
+  background: var(--fo-gold);
+  color: #FFFFFF;
+  box-shadow: 0 2px 12px rgba(200, 169, 106, 0.4);
+}
+.fo__badge-star {
+  font-size: 0.6rem;
+}
+.fo__badge--ai {
+  left: 12px;
+  background: var(--fo-olive);
+  color: #FFFFFF;
+  box-shadow: 0 2px 10px rgba(107, 125, 93, 0.35);
+}
+
+/* ── Floor level number on image ── */
+.fo__card-level {
+  position: absolute;
+  bottom: 12px;
+  left: 14px;
+  z-index: 3;
+  display: flex;
+  align-items: baseline;
+  gap: 0.4rem;
+  line-height: 1;
+}
+.fo__level-num {
+  font-family: var(--font-heading, 'Playfair Display', serif);
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: #FFFFFF;
+  text-shadow: 0 2px 16px rgba(11, 29, 42, 0.7);
+  line-height: 1;
+}
+.fo__level-text {
+  font-size: 0.56rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--fo-gold);
+  opacity: 0.9;
+  align-self: flex-end;
+  padding-bottom: 0.35rem;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.5);
+}
+
+/* ── Gold separator line ── */
+.fo__card-sep {
+  height: 1px;
+  background: linear-gradient(to right, var(--fo-gold), rgba(200, 169, 106, 0.08), transparent);
+  opacity: 0.45;
+  transition: opacity 0.32s ease;
+}
+.fo__card:hover .fo__card-sep {
+  opacity: 1;
+}
+
+/* ── Card body ── */
+.fo__card-body {
+  padding: 1.4rem 1.5rem 1.6rem;
+}
+
+.fo__card-icons {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 0.85rem;
+}
+.fo__card-icon {
+  font-size: 1.15rem;
+  line-height: 1;
+}
+
+.fo__card-name {
+  font-family: var(--font-heading, 'Playfair Display', serif);
+  font-size: 1.18rem;
+  font-weight: 700;
+  color: var(--fo-navy);
+  margin: 0 0 0.45rem;
+  letter-spacing: -0.01em;
+  transition: color 0.22s ease;
+}
+.fo__card:hover .fo__card-name {
+  color: var(--fo-gold-hover);
+}
+
+.fo__card-desc {
+  font-size: 0.85rem;
+  color: var(--fo-text);
+  line-height: 1.65;
+  margin: 0 0 1.1rem;
+}
+
+/* Feature tags — beige bg, olive text */
+.fo__card-features {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 1.3rem;
+}
+.fo__feat-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--fo-olive);
+  background: var(--fo-beige);
+  border: 1px solid rgba(107, 125, 93, 0.22);
+  padding: 0.28rem 0.7rem;
+  border-radius: 4px;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+.fo__card:hover .fo__feat-tag {
+  background: var(--fo-olive-light);
+  border-color: rgba(107, 125, 93, 0.38);
+  color: var(--fo-olive);
+}
+.fo__feat-dot {
+  font-size: 0.45rem;
+  color: var(--fo-gold);
+  opacity: 0.7;
+}
+
+/* ── Card actions ── */
+.fo__card-actions {
+  display: flex;
+  gap: 0.7rem;
+  padding-top: 1.1rem;
+  border-top: 1px solid rgba(11, 29, 42, 0.06);
+}
+
+/* ── Buttons ── */
+.fo__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  padding: 0.65rem 1.25rem;
+  border-radius: 6px;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  border: none;
+  white-space: nowrap;
+  font-family: var(--font-body, sans-serif);
+}
+
+/* Primary — navy background, white text → gold on hover */
+.fo__btn--primary {
+  background: var(--fo-navy);
+  color: #FFFFFF;
+  flex: 1;
+}
+.fo__btn--primary:hover {
+  background: var(--fo-gold-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(200, 169, 106, 0.3);
+}
+
+/* Ghost — beige bg, navy text, soft border */
+.fo__btn--ghost {
+  background: var(--fo-beige);
+  color: var(--fo-navy);
+  border: 1px solid rgba(11, 29, 42, 0.16);
+  flex: 1;
+}
+.fo__btn--ghost:hover {
+  background: var(--fo-beige-soft);
+  border-color: var(--fo-gold);
+  color: var(--fo-navy);
+  transform: translateY(-2px);
+}
+
+/* Gold — gold bg, navy text */
+.fo__btn--gold {
+  background: var(--fo-gold);
+  color: var(--fo-navy);
+}
+.fo__btn--gold:hover {
+  background: var(--fo-gold-hover);
+  color: #FFFFFF;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(200, 169, 106, 0.35);
+}
+
+/* Outline — for CTA on navy bg */
+.fo__btn--outline {
+  background: rgba(255, 255, 255, 0.08);
+  color: #FFFFFF;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(8px);
+}
+.fo__btn--outline:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.6);
+  transform: translateY(-2px);
+}
+
+.fo__btn--lg {
+  padding: 0.95rem 2.4rem;
+  font-size: 0.84rem;
+  border-radius: 7px;
+}
+
+/* Shimmer sweep */
+.fo__card-shimmer {
+  position: absolute;
+  top: 0; left: -120%;
+  width: 60%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(200, 169, 106, 0.06), transparent);
+  pointer-events: none;
+  transition: left 0.75s ease;
+  z-index: 1;
+}
+.fo__card:hover .fo__card-shimmer {
+  left: 160%;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   4. CTA — Navy section for strong closing contrast
+═══════════════════════════════════════════════════════════════ */
+
+.fo__cta {
+  position: relative;
+  padding: 9rem 0;
+  overflow: hidden;
+  text-align: center;
+  isolation: isolate;
+}
+
+.fo__cta-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+.fo__cta-bg img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+}
+.fo__cta-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(11, 29, 42, 0.65) 0%,
+    rgba(11, 29, 42, 0.90) 100%
+  );
+}
+
+.fo__cta-content {
+  position: relative;
+  z-index: 2;
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+.fo__cta-kicker {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--fo-gold);
+  margin-bottom: 1.25rem;
+}
+.fo__cta-title {
+  font-family: var(--font-heading, 'Playfair Display', serif);
+  font-size: clamp(2.2rem, 4.5vw, 3.8rem);
+  font-weight: 800;
+  color: #FFFFFF;
+  line-height: 1.12;
+  margin-bottom: 0;
+  letter-spacing: -0.02em;
+}
+.fo__cta-title em {
+  font-style: italic;
+  color: var(--fo-gold);
+}
+.fo__gold-rule {
+  width: 52px;
+  height: 2px;
+  background: linear-gradient(to right, var(--fo-gold), rgba(200, 169, 106, 0.4));
+  margin: 1.75rem auto;
+  border-radius: 2px;
+}
+.fo__cta-sub {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.55);
+  margin-bottom: 2.5rem;
+  letter-spacing: 0.02em;
+}
+.fo__cta-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   5. RESPONSIVE
+═══════════════════════════════════════════════════════════════ */
+
+@media (max-width: 1100px) {
+  .fo__grid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .fo__hero {
+    padding: 5rem 0 4rem;
+    min-height: 58vh;
+  }
+  .fo__grid {
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1.25rem;
+  }
+  .fo__stats {
+    flex-wrap: wrap;
+    max-width: 100%;
+    margin: 3rem 1.75rem 0;
+  }
+  .fo__stat {
+    flex: 0 0 50%;
+    border-bottom: 1px solid rgba(200, 169, 106, 0.2);
+  }
+  .fo__stat:nth-child(2) .fo__stat-divider,
+  .fo__stat:nth-child(4) .fo__stat-divider { display: none; }
+  .fo__cta { padding: 6rem 0; }
+}
+
+@media (max-width: 560px) {
+  .fo__grid {
+    grid-template-columns: 1fr;
+  }
+  .fo__filters {
+    justify-content: center;
+  }
+  .fo__filter-btn {
+    font-size: 0.7rem;
+    padding: 0.45rem 1rem;
+  }
+  .fo__hero-title {
+    font-size: clamp(2.1rem, 8vw, 2.8rem);
+  }
+  .fo__stat {
+    flex: 0 0 100%;
+    border-right: none;
+  }
+  .fo__stat-divider { display: none; }
+}

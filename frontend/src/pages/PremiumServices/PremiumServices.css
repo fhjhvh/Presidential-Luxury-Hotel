@@ -1,0 +1,86 @@
+/* ── Design tokens ─────────────────────────────────────────────── */
+.premium-services {
+  --ps-beige:  #F5F0E6;
+  --ps-navy:   #0B1D2A;
+  --ps-gold:   #C8A96A;
+  --ps-olive:  #6B7D5D;
+  --ps-white:  #FFFFFF;
+  --ps-gold-hover: #B8943E;
+}
+
+.premium-services { min-height: 100vh; background: var(--ps-beige); }
+
+.premium-hero {
+  position: relative; height: 60vh;
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+  background: var(--ps-navy);
+}
+.premium-hero__video {
+  position: absolute; top: 50%; left: 50%;
+  min-width: 100%; min-height: 100%;
+  transform: translate(-50%, -50%); object-fit: cover;
+}
+.premium-hero__overlay {
+  position: absolute; inset: 0;
+  background: rgba(11, 29, 42, 0.65);
+}
+.premium-hero h1 {
+  position: relative; z-index: 2;
+  font-size: 3.5rem; color: var(--ps-gold);
+  margin-bottom: 1rem; text-align: center;
+}
+.premium-hero p {
+  position: relative; z-index: 2;
+  font-size: 1.25rem; text-align: center;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.premium-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+  padding: 4rem 2rem;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+.premium-card {
+  background: var(--ps-white);
+  border: 1px solid rgba(200, 169, 106, 0.25);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
+}
+.premium-card:hover {
+  border-color: var(--ps-gold);
+  box-shadow: 0 15px 50px rgba(200, 169, 106, 0.18);
+  transform: translateY(-4px);
+}
+
+.premium-card__image {
+  position: relative; height: 200px;
+  background-size: cover; background-position: center;
+  display: flex; align-items: center; justify-content: center;
+}
+.premium-card__overlay {
+  position: absolute; inset: 0;
+  background: rgba(11, 29, 42, 0.45);
+}
+.premium-card__icon {
+  position: relative; z-index: 2;
+  font-size: 3rem;
+  filter: drop-shadow(0 0 15px rgba(200, 169, 106, 0.5));
+}
+
+.premium-card__content { padding: 1.5rem; }
+.premium-card h3 { color: var(--ps-navy); margin-bottom: 0.75rem; font-size: 1.25rem; }
+.premium-card p { color: rgba(11, 29, 42, 0.7); margin-bottom: 1rem; }
+
+.premium-card__link {
+  color: var(--ps-gold);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.2s;
+}
+.premium-card__link:hover { color: var(--ps-gold-hover); text-decoration: underline; }

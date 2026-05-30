@@ -1,0 +1,569 @@
+.profile-page {
+  padding: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.profile-page-header {
+  margin-bottom: 1.5rem;
+}
+
+.profile-container {
+  background: linear-gradient(135deg, rgba(20, 20, 20, 0.8), rgba(30, 30, 30, 0.6));
+  border: 1px solid rgba(201, 164, 76, 0.3);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.profile-header {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  padding: 3rem;
+  background: linear-gradient(135deg, rgba(201, 164, 76, 0.15), rgba(201, 164, 76, 0.05));
+  border-bottom: 1px solid rgba(201, 164, 76, 0.3);
+}
+
+.profile-avatar {
+  flex-shrink: 0;
+}
+
+.avatar-circle {
+  width: 120px;
+  height: 120px;
+  background: linear-gradient(135deg, var(--gold), #d4af37);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 4rem;
+  box-shadow: 0 8px 24px rgba(201, 164, 76, 0.4);
+}
+
+.profile-header-info {
+  flex: 1;
+}
+
+.profile-name {
+  font-size: 2.5rem;
+  color: var(--gold);
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.profile-role-badge {
+  display: inline-block;
+  padding: 0.5rem 1.25rem;
+  border-radius: 20px;
+  color: white;
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-bottom: 1rem;
+}
+
+.profile-discount {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.discount-label {
+  color: var(--marble-white);
+  opacity: 0.8;
+}
+
+.discount-value {
+  background: linear-gradient(135deg, var(--gold), #d4af37);
+  color: var(--charcoal);
+  padding: 0.5rem 1rem;
+  border-radius: 16px;
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.profile-sections {
+  padding: 2rem 3rem;
+  display: grid;
+  gap: 2rem;
+}
+
+.profile-section {
+  background: rgba(11, 11, 11, 0.3);
+  border: 1px solid rgba(201, 164, 76, 0.2);
+  border-radius: 8px;
+  padding: 2rem;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.section-title {
+  font-size: 1.8rem;
+  color: var(--gold);
+  font-weight: 600;
+}
+
+.profile-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-group label {
+  color: var(--gold);
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+.profile-input,
+.profile-textarea {
+  padding: 0.875rem;
+  background: rgba(11, 11, 11, 0.5);
+  border: 1px solid rgba(201, 164, 76, 0.3);
+  border-radius: 6px;
+  color: var(--marble-white);
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.profile-input:not(:disabled):focus,
+.profile-textarea:not(:disabled):focus {
+  outline: none;
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(201, 164, 76, 0.1);
+}
+
+.profile-input:disabled,
+.profile-textarea:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.profile-textarea {
+  resize: vertical;
+  font-family: inherit;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1rem;
+}
+
+.account-details {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background: rgba(11, 11, 11, 0.3);
+  border: 1px solid rgba(201, 164, 76, 0.2);
+  border-radius: 6px;
+}
+
+.detail-row.privileges-row {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.detail-label {
+  color: var(--marble-white);
+  opacity: 0.7;
+  font-weight: 500;
+}
+
+.detail-value {
+  color: var(--gold);
+  font-weight: 600;
+}
+
+.status-active {
+  background: rgba(0, 200, 83, 0.2);
+  color: #69F0AE;
+  padding: 0.35rem 1rem;
+  border-radius: 12px;
+  font-size: 0.9rem;
+}
+
+.privileges-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  width: 100%;
+}
+
+.privilege-badge {
+  background: rgba(201, 164, 76, 0.2);
+  color: var(--gold);
+  padding: 0.5rem 1rem;
+  border-radius: 16px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.invoices-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.invoice-card {
+  background: rgba(11, 11, 11, 0.5);
+  border: 1px solid rgba(201, 164, 76, 0.2);
+  border-radius: 8px;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.invoice-card:hover {
+  border-color: var(--gold);
+  transform: translateY(-2px);
+}
+
+.invoice-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(201, 164, 76, 0.2);
+}
+
+.invoice-number {
+  font-size: 1.2rem;
+  color: var(--gold);
+  margin-bottom: 0.25rem;
+  font-weight: 600;
+}
+
+.invoice-date {
+  font-size: 0.9rem;
+  color: var(--marble-white);
+  opacity: 0.6;
+}
+
+.invoice-status {
+  padding: 0.5rem 1rem;
+  border-radius: 16px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.invoice-status.status-paid {
+  background: rgba(0, 200, 83, 0.2);
+  color: #69F0AE;
+}
+
+.invoice-status.status-pending {
+  background: rgba(255, 184, 0, 0.2);
+  color: #FFD54F;
+}
+
+.invoice-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.invoice-item {
+  display: flex;
+  justify-content: space-between;
+  color: var(--marble-white);
+  font-size: 1rem;
+}
+
+.invoice-item.discount-item {
+  color: #69F0AE;
+  font-weight: 600;
+}
+
+.invoice-total {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 1rem;
+  margin-top: 0.5rem;
+  border-top: 2px solid rgba(201, 164, 76, 0.3);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--gold);
+}
+
+.invoice-download {
+  width: 100%;
+  padding: 0.75rem;
+  background: linear-gradient(135deg, rgba(201, 164, 76, 0.2), rgba(201, 164, 76, 0.1));
+  border: 1px solid var(--gold);
+  border-radius: 6px;
+  color: var(--gold);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.invoice-download:hover {
+  background: linear-gradient(135deg, var(--gold), #d4af37);
+  color: var(--charcoal);
+  transform: scale(1.02);
+}
+
+.offers-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.offer-card-profile {
+  background: rgba(11, 11, 11, 0.5);
+  border: 2px solid rgba(201, 164, 76, 0.3);
+  border-radius: 8px;
+  padding: 1.5rem;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.offer-card-profile:hover {
+  border-color: var(--gold);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(201, 164, 76, 0.3);
+}
+
+.offer-badge {
+  position: absolute;
+  top: -12px;
+  right: 20px;
+  background: linear-gradient(135deg, var(--gold), #d4af37);
+  color: var(--charcoal);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  box-shadow: 0 4px 12px rgba(201, 164, 76, 0.4);
+}
+
+.offer-title {
+  font-size: 1.3rem;
+  color: var(--gold);
+  margin: 1rem 0 0.75rem;
+  font-weight: 600;
+}
+
+.offer-description {
+  color: var(--marble-white);
+  opacity: 0.8;
+  margin-bottom: 1rem;
+  line-height: 1.5;
+}
+
+.offer-validity {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding: 0.75rem;
+  background: rgba(201, 164, 76, 0.1);
+  border-radius: 4px;
+}
+
+.offer-valid-label {
+  color: var(--marble-white);
+  opacity: 0.7;
+  font-size: 0.9rem;
+}
+
+.offer-valid-date {
+  color: var(--gold);
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.offer-valid-date.offer-active {
+  color: #69F0AE;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+.offer-claim-btn {
+  width: 100%;
+  padding: 0.75rem;
+  background: linear-gradient(135deg, var(--gold), #d4af37);
+  color: var(--charcoal);
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.offer-claim-btn:hover {
+  transform: scale(1.02);
+  box-shadow: 0 4px 12px rgba(201, 164, 76, 0.4);
+}
+
+@media (max-width: 768px) {
+  .profile-page {
+    padding: 1rem;
+  }
+
+  .profile-container {
+    overflow: hidden;
+  }
+
+  .profile-header {
+    flex-direction: column;
+    text-align: center;
+    padding: 1.5rem 1rem;
+    gap: 1rem;
+  }
+
+  .profile-name {
+    font-size: 1.6rem;
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+
+  .profile-sections {
+    padding: 1rem;
+  }
+
+  .profile-section {
+    padding: 1.25rem 1rem;
+  }
+
+  .section-title {
+    font-size: 1.4rem;
+    word-break: break-word;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .section-header {
+    flex-direction: column;
+    gap: 0.75rem;
+    align-items: flex-start;
+  }
+
+  .form-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .form-actions > * {
+    width: 100%;
+  }
+
+  .detail-row {
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: flex-start;
+  }
+
+  .detail-label,
+  .detail-value {
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+
+  .offers-list {
+    grid-template-columns: 1fr;
+  }
+
+  .invoice-header {
+    flex-direction: column;
+    gap: 0.75rem;
+    align-items: flex-start;
+  }
+
+  .invoice-item {
+    font-size: 0.9rem;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+  }
+
+  .invoice-total {
+    font-size: 1rem;
+  }
+
+  .profile-discount {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 480px) {
+  .profile-page {
+    padding: 0.75rem;
+  }
+
+  .profile-header {
+    padding: 1.25rem 0.875rem;
+  }
+
+  .avatar-circle {
+    width: 90px;
+    height: 90px;
+    font-size: 3rem;
+  }
+
+  .profile-name {
+    font-size: 1.35rem;
+  }
+
+  .section-title {
+    font-size: 1.2rem;
+  }
+
+  .profile-sections {
+    padding: 0.875rem;
+    gap: 1rem;
+  }
+
+  .profile-section {
+    padding: 1rem 0.875rem;
+  }
+
+  .profile-input,
+  .profile-textarea {
+    font-size: 16px;
+  }
+
+  .invoice-download,
+  .offer-claim-btn {
+    min-height: 44px;
+    font-size: 0.9rem;
+  }
+}

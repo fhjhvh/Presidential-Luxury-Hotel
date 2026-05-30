@@ -1,0 +1,61 @@
+.back-button {
+  position: fixed;
+  top: 120px;
+  left: 2rem;
+  z-index: 1000;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 1.75rem;
+  background: rgba(15, 28, 46, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(201, 164, 76, 0.4);
+  color: var(--royal-gold);
+  font-size: 1rem;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: var(--transition-elegant);
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.back-button:hover {
+  border-color: var(--royal-gold);
+  background: rgba(201, 164, 76, 0.15);
+  transform: translateX(-8px) scale(1.05);
+  box-shadow: 0 6px 30px rgba(201, 164, 76, 0.3);
+}
+
+.back-button__arrow {
+  font-size: 1.5rem;
+  transition: var(--transition-elegant);
+  font-weight: bold;
+}
+
+.back-button:hover .back-button__arrow {
+  transform: translateX(-5px);
+}
+
+.back-button__label {
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-weight: 600;
+  font-size: 0.875rem;
+}
+
+@media (max-width: 768px) {
+  .back-button {
+    top: 100px;
+    left: 1rem;
+    padding: 0.75rem 1.25rem;
+  }
+  
+  .back-button__label {
+    display: none;
+  }
+  
+  .back-button__arrow {
+    font-size: 1.75rem;
+  }
+}

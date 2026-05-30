@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 420" width="320" height="420">
+  <defs>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%"   stop-color="#F5DC6E"/>
+      <stop offset="40%"  stop-color="#D4AF37"/>
+      <stop offset="100%" stop-color="#9E7A15"/>
+    </linearGradient>
+    <linearGradient id="shieldBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%"   stop-color="#10101C"/>
+      <stop offset="100%" stop-color="#080812"/>
+    </linearGradient>
+    <filter id="goldGlow">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+
+  <!-- ═══════════════ HOTEL NAME TEXT (above crest) ═══════════════ -->
+  <text x="160" y="30"
+        font-family="'Playfair Display','Cinzel','Times New Roman',Georgia,serif"
+        font-size="22" font-weight="700" font-style="normal"
+        text-anchor="middle" fill="url(#goldGrad)"
+        letter-spacing="8">PRESIDENTIAL</text>
+
+  <text x="160" y="52"
+        font-family="'Playfair Display','Cinzel','Times New Roman',Georgia,serif"
+        font-size="13" font-weight="400"
+        text-anchor="middle" fill="url(#goldGrad)"
+        letter-spacing="5">ROYAL PALACE</text>
+
+  <!-- Decorative line under title -->
+  <line x1="55" y1="60" x2="265" y2="60" stroke="#D4AF37" stroke-width="0.7" opacity="0.6"/>
+  <rect x="157" y="57" width="6" height="6" fill="#D4AF37" transform="rotate(45 160 60)"/>
+
+  <!-- ═══════════════ SHIELD OUTER ═══════════════ -->
+  <path d="M160 72 L300 122 L300 255 Q300 365 160 408 Q20 365 20 255 L20 122 Z"
+        fill="url(#shieldBg)" stroke="url(#goldGrad)" stroke-width="2.2"/>
+
+  <!-- Shield inner border (double-line crest detail) -->
+  <path d="M160 84 L288 128 L288 253 Q288 355 160 395 Q32 355 32 253 L32 128 Z"
+        fill="none" stroke="#D4AF37" stroke-width="0.9" opacity="0.45"/>
+
+  <!-- ═══════════════ CROWN ═══════════════ -->
+  <!-- Crown main body — 3 peaks -->
+  <path d="M102,165 L102,132 L126,147 L160,118 L194,147 L218,132 L218,165 Z"
+        fill="url(#goldGrad)" filter="url(#goldGlow)"/>
+
+  <!-- Crown rim base -->
+  <rect x="100" y="160" width="120" height="14" rx="5" fill="url(#goldGrad)"/>
+
+  <!-- Crown peak orbs -->
+  <circle cx="102" cy="132" r="5.5" fill="url(#goldGrad)"/>
+  <circle cx="160" cy="118" r="7"   fill="url(#goldGrad)"/>
+  <circle cx="218" cy="132" r="5.5" fill="url(#goldGrad)"/>
+
+  <!-- Crown gems -->
+  <ellipse cx="126" cy="146" rx="6" ry="5.5" fill="#8B0000" opacity="0.92"/>
+  <ellipse cx="160" cy="132" rx="7" ry="6"   fill="#00246A" opacity="0.92"/>
+  <ellipse cx="194" cy="146" rx="6" ry="5.5" fill="#004D1A" opacity="0.92"/>
+
+  <!-- Gem highlight dots -->
+  <circle cx="124" cy="143" r="1.8" fill="#FF6B6B" opacity="0.7"/>
+  <circle cx="158" cy="129" r="2.2" fill="#6BA3FF" opacity="0.7"/>
+  <circle cx="192" cy="143" r="1.8" fill="#6BFF8E" opacity="0.7"/>
+
+  <!-- ═══════════════ DIVIDER LINE ═══════════════ -->
+  <line x1="55" y1="188" x2="265" y2="188" stroke="#D4AF37" stroke-width="0.8" opacity="0.65"/>
+  <circle cx="87"  cy="188" r="2.8" fill="#D4AF37" opacity="0.75"/>
+  <rect x="157" y="185" width="6" height="6" fill="#D4AF37" transform="rotate(45 160 188)"/>
+  <circle cx="233" cy="188" r="2.8" fill="#D4AF37" opacity="0.75"/>
+
+  <!-- ═══════════════ MONOGRAM "P" ═══════════════ -->
+  <text x="160" y="305"
+        font-family="'Playfair Display','Cinzel','Times New Roman',Georgia,serif"
+        font-size="128" font-weight="700"
+        text-anchor="middle" dominant-baseline="auto"
+        fill="url(#goldGrad)" opacity="0.97">P</text>
+
+  <!-- ═══════════════ BOTTOM DIVIDER ═══════════════ -->
+  <line x1="55" y1="325" x2="265" y2="325" stroke="#D4AF37" stroke-width="0.8" opacity="0.65"/>
+  <circle cx="87"  cy="325" r="2.8" fill="#D4AF37" opacity="0.75"/>
+  <rect x="157" y="322" width="6" height="6" fill="#D4AF37" transform="rotate(45 160 325)"/>
+  <circle cx="233" cy="325" r="2.8" fill="#D4AF37" opacity="0.75"/>
+
+  <!-- ═══════════════ FIVE STARS ═══════════════ -->
+  <text x="160" y="356"
+        font-family="serif" font-size="14"
+        text-anchor="middle" fill="url(#goldGrad)"
+        letter-spacing="5">★★★★★</text>
+
+  <!-- ═══════════════ HOTEL SUBTEXT ═══════════════ -->
+  <text x="160" y="382"
+        font-family="'Playfair Display','Cinzel','Times New Roman',Georgia,serif"
+        font-size="10" font-weight="400"
+        text-anchor="middle" fill="#D4AF37" opacity="0.75"
+        letter-spacing="4">H O T E L</text>
+
+  <!-- ═══════════════ TAGLINE ═══════════════ -->
+  <text x="160" y="403"
+        font-family="'Times New Roman',Georgia,serif"
+        font-size="8.5" font-style="italic"
+        text-anchor="middle" fill="#D4AF37" opacity="0.6"
+        letter-spacing="1.5">Luxury. Comfort. Excellence.</text>
+</svg>

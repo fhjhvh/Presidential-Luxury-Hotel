@@ -1,0 +1,321 @@
+/* ── Design tokens ─────────────────────────────────────────────── */
+.suite-detail-page {
+  --sd-beige:  #F5F0E6;
+  --sd-navy:   #0B1D2A;
+  --sd-gold:   #C8A96A;
+  --sd-olive:  #6B7D5D;
+  --sd-white:  #FFFFFF;
+}
+
+.suite-detail-page {
+  min-height: 100vh;
+  background: var(--sd-beige);
+}
+
+/* ── Not Found ────────────────────────────────────────────────── */
+.suite-not-found {
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--sd-navy);
+  text-align: center;
+  padding: 2rem;
+}
+
+.suite-not-found h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: var(--sd-gold);
+}
+
+.suite-not-found p {
+  color: rgba(11, 29, 42, 0.6);
+  margin-bottom: 2rem;
+}
+
+/* ── Gallery Section ──────────────────────────────────────────── */
+.suite-gallery {
+  position: relative;
+  height: 70vh;
+  min-height: 500px;
+}
+
+.gallery-main {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+}
+
+.gallery-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(11, 29, 42, 0.2) 0%, rgba(11, 29, 42, 0.65) 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 3rem;
+}
+
+.gallery-content {
+  max-width: 800px;
+}
+
+.gallery-content h1 {
+  font-size: 3.5rem;
+  font-weight: 300;
+  color: #fff;
+  margin-bottom: 0.5rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.gallery-content p {
+  font-size: 1.5rem;
+  color: var(--sd-gold);
+  font-style: italic;
+}
+
+.gallery-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.4);
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  color: #fff;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  font-size: 2rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gallery-nav:hover {
+  background: rgba(200, 169, 106, 0.8);
+  border-color: var(--sd-gold);
+}
+
+.gallery-nav.prev { left: 2rem; }
+.gallery-nav.next { right: 2rem; }
+
+.gallery-thumbnails {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.75rem;
+  z-index: 10;
+}
+
+.thumbnail {
+  width: 80px;
+  height: 50px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 6px;
+  background-size: cover;
+  background-position: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  opacity: 0.6;
+}
+
+.thumbnail:hover,
+.thumbnail.active {
+  opacity: 1;
+  border-color: var(--sd-gold);
+  transform: scale(1.1);
+}
+
+/* ── Suite Info Section ───────────────────────────────────────── */
+.suite-info {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+}
+
+.suite-info-grid {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 3rem;
+}
+
+.suite-specs {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+  padding: 2rem;
+  background: var(--sd-white);
+  border: 1px solid rgba(200, 169, 106, 0.2);
+  border-radius: 16px;
+}
+
+.spec { text-align: center; }
+
+.spec-icon {
+  display: block;
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.spec-label {
+  display: block;
+  color: rgba(11, 29, 42, 0.5);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 0.25rem;
+}
+
+.spec-value {
+  display: block;
+  color: var(--sd-navy);
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.suite-description { margin-bottom: 3rem; }
+
+.suite-description h2,
+.suite-amenities h2,
+.suite-services h2 {
+  color: var(--sd-navy);
+  font-size: 1.75rem;
+  font-weight: 400;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid rgba(200, 169, 106, 0.3);
+}
+
+.suite-description p {
+  color: rgba(11, 29, 42, 0.7);
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+}
+
+.suite-amenities { margin-bottom: 3rem; }
+
+.amenities-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem 2rem;
+  list-style: none;
+  padding: 0;
+}
+
+.amenities-grid li {
+  color: rgba(11, 29, 42, 0.75);
+  font-size: 1rem;
+  padding: 0.5rem 0;
+}
+
+.suite-services { margin-bottom: 2rem; }
+
+.services-list {
+  background: var(--sd-white);
+  border: 1px solid rgba(11, 29, 42, 0.1);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.service-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid rgba(11, 29, 42, 0.06);
+}
+
+.service-item:last-child { border-bottom: none; }
+
+.service-item.included .service-name { color: var(--sd-olive); }
+.service-item.extra .service-name { color: var(--sd-navy); }
+
+.service-price {
+  color: var(--sd-gold);
+  font-weight: 500;
+}
+
+/* ── Booking Card ─────────────────────────────────────────────── */
+.suite-booking-card {
+  position: sticky;
+  top: 2rem;
+  height: fit-content;
+}
+
+.booking-card-content {
+  background: var(--sd-white);
+  border: 2px solid rgba(200, 169, 106, 0.3);
+  border-radius: 20px;
+  padding: 2.5rem;
+  text-align: center;
+  box-shadow: 0 8px 40px rgba(11, 29, 42, 0.08);
+}
+
+.price-display { margin-bottom: 2rem; }
+
+.price-from {
+  display: block;
+  color: rgba(11, 29, 42, 0.5);
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.price-amount {
+  display: block;
+  color: var(--sd-gold);
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.price-unit {
+  display: block;
+  color: rgba(11, 29, 42, 0.5);
+  font-size: 0.9rem;
+}
+
+.booking-highlights {
+  text-align: left;
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background: var(--sd-beige);
+  border-radius: 12px;
+}
+
+.booking-highlights p {
+  color: var(--sd-navy);
+  margin: 0.5rem 0;
+  font-size: 0.95rem;
+}
+
+.booking-note {
+  margin-top: 1.5rem;
+  color: rgba(11, 29, 42, 0.5);
+  font-size: 0.9rem;
+}
+
+.booking-note strong { color: var(--sd-gold); }
+
+/* ── Responsive ───────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .suite-info-grid { grid-template-columns: 1fr; }
+  .suite-booking-card { position: static; }
+  .suite-specs { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 768px) {
+  .gallery-content h1 { font-size: 2.5rem; }
+  .gallery-content p { font-size: 1.2rem; }
+  .suite-gallery { height: 50vh; }
+  .gallery-thumbnails { display: none; }
+  .amenities-grid { grid-template-columns: 1fr; }
+  .suite-specs { grid-template-columns: 1fr 1fr; }
+}

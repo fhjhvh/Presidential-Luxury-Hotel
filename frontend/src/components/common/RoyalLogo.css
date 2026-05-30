@@ -1,0 +1,131 @@
+/* ═══════════════════════════════════════════════════════════════
+   ROYAL LOGO — Presidential Royal Palace Hotel
+   Reusable brand mark: crest + text
+   ═══════════════════════════════════════════════════════════════ */
+
+.royal-logo {
+  display:        inline-flex;
+  align-items:    center;
+  gap:            0.6rem;
+  text-decoration: none;
+  user-select:    none;
+  flex-shrink:    0;
+}
+
+/* ── Layout: vertical (stacked) ────────────────────────────── */
+.royal-logo--vertical {
+  flex-direction: column;
+  gap:            0.5rem;
+  text-align:     center;
+}
+
+.royal-logo--vertical .royal-logo__text {
+  align-items: center;
+}
+
+/* ── The SVG crest ─────────────────────────────────────────── */
+.royal-logo__crest {
+  display:    block;
+  flex-shrink: 0;
+  height:     auto;
+  filter:     drop-shadow(0 2px 8px rgba(212, 175, 55, 0.35));
+  transition: filter 0.3s ease;
+}
+
+.royal-logo:hover .royal-logo__crest {
+  filter: drop-shadow(0 4px 16px rgba(212, 175, 55, 0.6));
+}
+
+/* ── Text block ────────────────────────────────────────────── */
+.royal-logo__text {
+  display:        flex;
+  flex-direction: column;
+  gap:            0;
+  line-height:    1;
+}
+
+.royal-logo__title {
+  font-family:    'Playfair Display', 'Cinzel', Georgia, serif;
+  font-weight:    700;
+  color:          #D4AF37;
+  letter-spacing: 0.2em;
+  line-height:    1;
+  text-transform: uppercase;
+}
+
+.royal-logo__subtitle {
+  font-family:    'Playfair Display', 'Cinzel', Georgia, serif;
+  font-weight:    400;
+  color:          #D4AF37;
+  letter-spacing: 0.18em;
+  opacity:        0.9;
+  text-transform: uppercase;
+}
+
+.royal-logo__hotel {
+  font-family:    'Playfair Display', 'Cinzel', Georgia, serif;
+  font-weight:    300;
+  color:          #D4AF37;
+  letter-spacing: 0.35em;
+  opacity:        0.7;
+  text-transform: uppercase;
+}
+
+.royal-logo__tagline {
+  font-family:    Georgia, 'Times New Roman', serif;
+  font-style:     italic;
+  color:          #D4AF37;
+  opacity:        0.55;
+  letter-spacing: 0.05em;
+  margin-top:     0.25rem;
+}
+
+/* ── Size variants ─────────────────────────────────────────── */
+/* xs — 24px crest, for compact contexts */
+.royal-logo--xs .royal-logo__crest  { width: 24px; }
+.royal-logo--xs .royal-logo__title  { font-size: 0.6rem; }
+.royal-logo--xs .royal-logo__subtitle { font-size: 0.5rem; }
+.royal-logo--xs .royal-logo__hotel  { font-size: 0.45rem; }
+.royal-logo--xs .royal-logo__tagline { display: none; }
+
+/* sm — 36px crest, navbar compact */
+.royal-logo--sm .royal-logo__crest  { width: 36px; }
+.royal-logo--sm .royal-logo__title  { font-size: 0.78rem; }
+.royal-logo--sm .royal-logo__subtitle { font-size: 0.62rem; }
+.royal-logo--sm .royal-logo__hotel  { font-size: 0.55rem; }
+.royal-logo--sm .royal-logo__tagline { font-size: 0.5rem; }
+
+/* md — 48px crest, default navbar */
+.royal-logo--md .royal-logo__crest  { width: 48px; }
+.royal-logo--md .royal-logo__title  { font-size: 0.95rem; }
+.royal-logo--md .royal-logo__subtitle { font-size: 0.72rem; }
+.royal-logo--md .royal-logo__hotel  { font-size: 0.6rem; }
+.royal-logo--md .royal-logo__tagline { font-size: 0.58rem; }
+
+/* lg — 72px crest, footer */
+.royal-logo--lg .royal-logo__crest  { width: 72px; }
+.royal-logo--lg .royal-logo__title  { font-size: 1.3rem; }
+.royal-logo--lg .royal-logo__subtitle { font-size: 0.95rem; }
+.royal-logo--lg .royal-logo__hotel  { font-size: 0.8rem; }
+.royal-logo--lg .royal-logo__tagline { font-size: 0.72rem; }
+
+/* xl — 100px crest, auth left panel */
+.royal-logo--xl .royal-logo__crest  { width: 100px; }
+.royal-logo--xl .royal-logo__title  { font-size: 1.7rem; }
+.royal-logo--xl .royal-logo__subtitle { font-size: 1.15rem; }
+.royal-logo--xl .royal-logo__hotel  { font-size: 0.95rem; }
+.royal-logo--xl .royal-logo__tagline { font-size: 0.85rem; }
+
+/* ── Responsive ────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .royal-logo--md .royal-logo__crest { width: 40px; }
+  .royal-logo--md .royal-logo__title { font-size: 0.82rem; }
+  .royal-logo--md .royal-logo__subtitle { font-size: 0.62rem; }
+}
+
+@media (max-width: 480px) {
+  .royal-logo--md .royal-logo__crest { width: 34px; }
+  .royal-logo--md .royal-logo__title { font-size: 0.72rem; letter-spacing: 0.12em; }
+  .royal-logo--md .royal-logo__subtitle { font-size: 0.56rem; }
+  .royal-logo--md .royal-logo__hotel  { display: none; }
+}

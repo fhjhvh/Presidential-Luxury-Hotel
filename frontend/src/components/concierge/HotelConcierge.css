@@ -1,0 +1,830 @@
+/* ═══════════════════════════════════════════════════════════════
+   HOTEL CONCIERGE — Luxury AI Chat Widget
+   Palette: Navy #0F172A · Gold #C8A96A · Beige #F5F0E6 · White #FAFAF8
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── Toggle Button ──────────────────────────────────────────────
+   Floating gold button, bottom-right, with pulse animation      */
+
+.concierge-toggle {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 9000;
+  width: 62px;
+  height: 62px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #C8A96A 0%, #9A7540 100%);
+  border: none;
+  cursor: pointer;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow:
+    0 4px 20px rgba(200, 169, 106, 0.55),
+    0 0 0 0 rgba(200, 169, 106, 0.4);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  animation: concierge-pulse 3.2s ease-in-out infinite;
+}
+
+.concierge-toggle:hover {
+  transform: scale(1.08);
+  box-shadow:
+    0 6px 28px rgba(200, 169, 106, 0.65),
+    0 0 0 8px rgba(200, 169, 106, 0.12);
+  animation: none;
+}
+
+.concierge-toggle--open {
+  background: linear-gradient(135deg, #374151 0%, #1F2937 100%);
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.35);
+  animation: none;
+}
+
+@keyframes concierge-pulse {
+  0%, 100% { box-shadow: 0 4px 20px rgba(200, 169, 106, 0.55), 0 0 0 0 rgba(200, 169, 106, 0.4); }
+  50%       { box-shadow: 0 4px 20px rgba(200, 169, 106, 0.55), 0 0 0 10px rgba(200, 169, 106, 0); }
+}
+
+/* ── Unread Badge ───────────────────────────────────────────────  */
+.concierge-badge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  background: #DC2626;
+  color: #fff;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #fff;
+  animation: concierge-badge-pop 0.3s ease;
+}
+
+@keyframes concierge-badge-pop {
+  from { transform: scale(0); }
+  to   { transform: scale(1); }
+}
+
+/* ── Tooltip ────────────────────────────────────────────────────  */
+.concierge-tooltip {
+  position: fixed;
+  bottom: 2.6rem;
+  right: 5rem;
+  z-index: 8999;
+  background: #0F172A;
+  color: #C8A96A;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  padding: 0.4rem 0.875rem;
+  border-radius: 8px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  letter-spacing: 0.5px;
+  animation: concierge-tooltip-show 0.6s ease 3s forwards;
+}
+
+@keyframes concierge-tooltip-show {
+  to { opacity: 1; }
+}
+
+/* ── Chat Panel ─────────────────────────────────────────────────  */
+.concierge-panel {
+  position: fixed;
+  bottom: 6.5rem;
+  right: 2rem;
+  z-index: 8998;
+  width: 460px;
+  height: 76vh;
+  max-height: 720px;
+  min-height: 480px;
+  display: flex;
+  flex-direction: column;
+  background: #FAFAF8;
+  border-radius: 20px;
+  box-shadow:
+    0 24px 64px rgba(15, 23, 42, 0.22),
+    0 4px 16px rgba(15, 23, 42, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(200, 169, 106, 0.18);
+  overflow: hidden;
+  animation: concierge-panel-in 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.concierge-panel--rtl {
+  direction: rtl;
+  text-align: right;
+}
+
+@keyframes concierge-panel-in {
+  from {
+    opacity: 0;
+    transform: translateY(24px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ── Panel Header ───────────────────────────────────────────────  */
+.concierge-header {
+  background: linear-gradient(135deg, #0F172A 0%, #1E3251 100%);
+  padding: 1.125rem 1.375rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+  border-bottom: 1px solid rgba(200, 169, 106, 0.2);
+}
+
+.concierge-header-left {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+}
+
+.concierge-header-avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #C8A96A 0%, #9A7540 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #0F172A;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.125rem;
+  font-weight: 700;
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(200, 169, 106, 0.4);
+}
+
+.concierge-header h3 {
+  color: #F5F0E6;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.0625rem;
+  font-weight: 700;
+  margin: 0 0 0.15rem;
+  letter-spacing: 0.5px;
+}
+
+.concierge-header p {
+  color: rgba(200, 169, 106, 0.8);
+  font-size: 0.75rem;
+  margin: 0;
+  letter-spacing: 0.5px;
+}
+
+.concierge-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.concierge-status-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #22C55E;
+  box-shadow: 0 0 6px rgba(34, 197, 94, 0.6);
+  animation: concierge-status-blink 2s ease-in-out infinite;
+}
+
+@keyframes concierge-status-blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.5; }
+}
+
+.concierge-close-btn {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: rgba(237, 232, 218, 0.7);
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.875rem;
+  transition: all 0.15s ease;
+}
+
+.concierge-close-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+}
+
+/* ── Messages Area ──────────────────────────────────────────────  */
+.concierge-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1.25rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(200, 169, 106, 0.3) transparent;
+}
+
+.concierge-messages::-webkit-scrollbar { width: 4px; }
+.concierge-messages::-webkit-scrollbar-track { background: transparent; }
+.concierge-messages::-webkit-scrollbar-thumb {
+  background: rgba(200, 169, 106, 0.3);
+  border-radius: 4px;
+}
+
+/* ── Message Rows ───────────────────────────────────────────────  */
+.concierge-msg {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.625rem;
+  max-width: 100%;
+}
+
+.concierge-msg--user {
+  flex-direction: row-reverse;
+}
+
+.concierge-msg--ai {
+  flex-direction: row;
+}
+
+/* ── Avatar ─────────────────────────────────────────────────────  */
+.concierge-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #C8A96A 0%, #9A7540 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #0F172A;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 0.875rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+/* ── Bubbles ────────────────────────────────────────────────────  */
+.concierge-bubble {
+  max-width: 78%;
+  padding: 0.75rem 1rem;
+  border-radius: 16px;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  position: relative;
+  word-break: break-word;
+}
+
+.concierge-bubble--ai {
+  background: #fff;
+  color: #1F2937;
+  border: 1px solid rgba(200, 169, 106, 0.15);
+  border-bottom-left-radius: 4px;
+  box-shadow: 0 1px 4px rgba(15, 23, 42, 0.06);
+}
+
+.concierge-bubble--user {
+  background: linear-gradient(135deg, #0F172A 0%, #1E3251 100%);
+  color: #F5F0E6;
+  border-bottom-right-radius: 4px;
+}
+
+.concierge-bubble--error {
+  background: #FEF2F2;
+  border-color: rgba(220, 38, 38, 0.2);
+  color: #991B1B;
+}
+
+.concierge-time {
+  display: block;
+  font-size: 0.6875rem;
+  margin-top: 0.375rem;
+  opacity: 0.5;
+  text-align: right;
+}
+
+.concierge-bubble--ai .concierge-time { text-align: left; }
+
+/* ── Typing Indicator ───────────────────────────────────────────  */
+.concierge-typing {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 0.875rem 1rem;
+  min-width: 60px;
+}
+
+.concierge-typing-dots {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.concierge-typing-dots span {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #C8A96A;
+  animation: concierge-dot-bounce 1.4s ease-in-out infinite;
+}
+.concierge-typing-dots span:nth-child(1) { animation-delay: 0s; }
+.concierge-typing-dots span:nth-child(2) { animation-delay: 0.2s; }
+.concierge-typing-dots span:nth-child(3) { animation-delay: 0.4s; }
+
+.concierge-typing-label {
+  font-size: 0.8125rem;
+  font-style: italic;
+  color: #8A6F3A;
+  letter-spacing: 0.2px;
+}
+
+/* ── Structured experience sections ─────────────────────────────  */
+.concierge-line {
+  margin: 0 0 0.5rem 0;
+  line-height: 1.55;
+}
+.concierge-line:last-of-type { margin-bottom: 0; }
+
+.concierge-section-head {
+  display: block;
+  margin: 0.5rem 0 0.4rem 0;
+  font-family: var(--font-heading, 'Cormorant Garamond', Georgia, serif);
+  font-size: 1.02rem;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  color: #B8924A;
+}
+
+.concierge-section-head:first-child { margin-top: 0; }
+
+.concierge-section-head--divided {
+  margin-top: 0.85rem;
+  padding-top: 0.7rem;
+  border-top: 1px solid rgba(200, 169, 106, 0.22);
+}
+
+[dir="rtl"] .concierge-section-head { text-align: right; }
+
+@keyframes concierge-dot-bounce {
+  0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+  30%            { transform: translateY(-6px); opacity: 1; }
+}
+
+/* ── Recommendation Card ────────────────────────────────────────  */
+.concierge-rec-wrapper {
+  padding: 0 0 0 2.625rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+  animation: concierge-rec-in 0.35s ease;
+}
+
+@keyframes concierge-rec-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.concierge-rec-card {
+  background: #fff;
+  border: 1px solid rgba(200, 169, 106, 0.25);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.08);
+}
+
+/* Room Image */
+.concierge-rec-image {
+  position: relative;
+  height: 140px;
+  overflow: hidden;
+}
+
+.concierge-rec-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.concierge-rec-badge {
+  position: absolute;
+  top: 0.625rem;
+  left: 0.625rem;
+  color: #fff;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  padding: 0.2rem 0.6rem;
+  border-radius: 6px;
+  letter-spacing: 0.75px;
+  text-transform: uppercase;
+}
+
+/* Card Body */
+.concierge-rec-body {
+  padding: 0.875rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+}
+
+.concierge-rec-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.concierge-rec-header h4 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.0625rem;
+  color: #0F172A;
+  font-weight: 700;
+  margin: 0 0 0.2rem;
+}
+
+.concierge-rec-sub {
+  font-size: 0.75rem;
+  color: #6B7280;
+  margin: 0;
+}
+
+.concierge-rec-price {
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.concierge-rec-amount {
+  display: block;
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #0F172A;
+  line-height: 1;
+}
+
+.concierge-rec-per {
+  font-size: 0.75rem;
+  color: #6B7280;
+}
+
+/* Features */
+.concierge-rec-features {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.concierge-rec-feature {
+  font-size: 0.75rem;
+  color: #4B5563;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.concierge-rec-feature span {
+  color: #C8A96A;
+}
+
+/* Service tags */
+.concierge-rec-services {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.375rem;
+}
+
+.concierge-rec-service-tag {
+  background: #F5F0E6;
+  color: #6B705C;
+  border: 1px solid rgba(200, 169, 106, 0.25);
+  font-size: 0.6875rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 6px;
+  font-weight: 500;
+}
+
+/* Book button */
+.concierge-rec-book-btn {
+  width: 100%;
+  background: linear-gradient(135deg, #C8A96A 0%, #9A7540 100%);
+  color: #0F172A;
+  border: none;
+  border-radius: 10px;
+  padding: 0.75rem;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  letter-spacing: 0.25px;
+  margin-top: 0.25rem;
+}
+
+.concierge-rec-book-btn:hover {
+  background: linear-gradient(135deg, #D4B87A 0%, #AA8448 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(200, 169, 106, 0.35);
+}
+
+/* ── Alternatives ───────────────────────────────────────────────  */
+.concierge-alternatives {
+  background: #fff;
+  border: 1px solid rgba(200, 169, 106, 0.15);
+  border-radius: 12px;
+  padding: 0.75rem;
+}
+
+.concierge-alternatives-label {
+  font-size: 0.75rem;
+  color: #6B7280;
+  margin: 0 0 0.5rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.concierge-alt-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+.concierge-alt-btn {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  background: #F5F0E6;
+  border: 1px solid rgba(200, 169, 106, 0.2);
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.875rem;
+  color: #374151;
+  font-weight: 500;
+  transition: all 0.15s ease;
+}
+
+.concierge-alt-btn:hover {
+  background: rgba(200, 169, 106, 0.15);
+  border-color: rgba(200, 169, 106, 0.4);
+}
+
+.concierge-alt-price {
+  color: #C8A96A;
+  font-weight: 700;
+  font-size: 0.8125rem;
+}
+
+/* ── Quick Suggestions ──────────────────────────────────────────  */
+.concierge-suggestions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  border-top: 1px solid rgba(200, 169, 106, 0.1);
+  background: #F5F0E6;
+  flex-shrink: 0;
+}
+
+.concierge-suggestion-btn {
+  background: #fff;
+  border: 1px solid rgba(200, 169, 106, 0.3);
+  color: #374151;
+  border-radius: 20px;
+  padding: 0.4rem 0.875rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+
+.concierge-suggestion-btn:hover {
+  background: rgba(200, 169, 106, 0.15);
+  border-color: #C8A96A;
+  color: #0F172A;
+}
+
+/* ── Input Area ─────────────────────────────────────────────────  */
+.concierge-input-area {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.625rem;
+  padding: 0.875rem 1rem;
+  border-top: 1px solid rgba(200, 169, 106, 0.15);
+  background: #fff;
+  flex-shrink: 0;
+}
+
+.concierge-input {
+  flex: 1;
+  background: #F5F0E6;
+  border: 1.5px solid rgba(200, 169, 106, 0.25);
+  border-radius: 12px;
+  padding: 0.75rem 1rem;
+  font-size: 0.9375rem;
+  color: #1F2937;
+  resize: none;
+  max-height: 100px;
+  overflow-y: auto;
+  line-height: 1.5;
+  font-family: inherit;
+  transition: border-color 0.15s ease;
+  scrollbar-width: none;
+}
+
+.concierge-input::-webkit-scrollbar { display: none; }
+
+.concierge-input:focus {
+  outline: none;
+  border-color: #C8A96A;
+  background: #fff;
+}
+
+.concierge-input::placeholder { color: #9CA3AF; }
+.concierge-input:disabled { opacity: 0.6; cursor: not-allowed; }
+
+.concierge-send-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #C8A96A 0%, #9A7540 100%);
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+}
+
+.concierge-send-btn:hover:not(:disabled) {
+  background: linear-gradient(135deg, #D4B87A 0%, #AA8448 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 3px 10px rgba(200, 169, 106, 0.4);
+}
+
+.concierge-send-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Send spinner */
+.concierge-send-spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: concierge-spin 0.7s linear infinite;
+}
+
+@keyframes concierge-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ── Footer Note ────────────────────────────────────────────────  */
+.concierge-footer-note {
+  text-align: center;
+  padding: 0.5rem 1rem;
+  font-size: 0.6875rem;
+  color: rgba(107, 112, 92, 0.7);
+  background: #F5F0E6;
+  letter-spacing: 0.5px;
+  border-top: 1px solid rgba(200, 169, 106, 0.1);
+  flex-shrink: 0;
+}
+
+/* ── Responsive ─────────────────────────────────────────────────  */
+
+/* Tablet: slightly narrower */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .concierge-panel {
+    width: 420px;
+    height: 72vh;
+  }
+}
+
+/* Mobile: full-screen modal */
+@media (max-width: 768px) {
+  .concierge-panel {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    max-height: 100%;
+    min-height: unset;
+    border-radius: 0;
+    bottom: 0;
+    right: 0;
+    animation: concierge-mobile-in 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  @keyframes concierge-mobile-in {
+    from { opacity: 0; transform: translateY(100%); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .concierge-toggle {
+    bottom: 1.25rem;
+    right: 1.25rem;
+    width: 56px;
+    height: 56px;
+  }
+
+  .concierge-tooltip {
+    display: none;
+  }
+
+  .concierge-messages {
+    padding: 1rem 0.875rem;
+    flex: 1;
+    min-height: 0;
+  }
+
+  .concierge-bubble {
+    max-width: 85%;
+    font-size: 0.9375rem;
+  }
+
+  .concierge-input-area {
+    padding: 0.75rem 0.875rem;
+    padding-bottom: max(0.75rem, env(safe-area-inset-bottom));
+  }
+
+  .concierge-input {
+    font-size: 1rem;
+    padding: 0.75rem 0.875rem;
+  }
+
+  .concierge-send-btn {
+    width: 48px;
+    height: 48px;
+  }
+
+  .concierge-suggestions {
+    padding: 0.625rem 0.875rem;
+    gap: 0.4rem;
+  }
+
+  .concierge-suggestion-btn {
+    padding: 0.45rem 0.75rem;
+    font-size: 0.8rem;
+    min-height: 36px;
+  }
+
+  .concierge-header {
+    padding: 1rem 1.125rem;
+    padding-top: max(1rem, env(safe-area-inset-top));
+  }
+
+  .concierge-close-btn {
+    width: 36px;
+    height: 36px;
+    font-size: 1rem;
+  }
+
+  .concierge-rec-wrapper {
+    padding: 0;
+  }
+}
+
+/* ── Language Indicator Bar ─────────────────────────────────── */
+.concierge-lang-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.375rem 1rem;
+  background: #0a1628;
+  border-bottom: 1px solid rgba(200,169,106,0.12);
+}
+
+.concierge-lang-tag {
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: rgba(255,255,255,0.3);
+  padding: 0.15rem 0.45rem;
+  border-radius: 3px;
+  border: 1px solid transparent;
+  transition: all 0.2s ease;
+  cursor: default;
+  user-select: none;
+}
+
+.concierge-lang-tag.active {
+  color: #C8A96A;
+  border-color: rgba(200,169,106,0.4);
+  background: rgba(200,169,106,0.08);
+}
