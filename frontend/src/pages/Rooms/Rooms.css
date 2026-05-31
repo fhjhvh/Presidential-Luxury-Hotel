@@ -86,11 +86,11 @@
 /* ── Rooms grid ───────────────────────────────────────────────── */
 .rooms-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
   gap: 1.75rem;
 }
 .rooms-grid--suites {
-  grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
 }
 
 /* ── Room Card ────────────────────────────────────────────────── */
@@ -101,6 +101,9 @@
   transition: box-shadow 0.3s ease, transform 0.3s ease;
   position: relative;
   display: flex; flex-direction: column;
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
 }
 .room-card--suite {
   border: 1.5px solid rgba(200,169,106,0.35);
@@ -223,10 +226,15 @@
   display: flex; align-items: center; justify-content: space-between;
   padding-top: 0.75rem;
   border-top: 1px solid #F3F4F6; margin-top: auto;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  min-width: 0;
 }
-.room-card__price { display: flex; align-items: baseline; gap: 0.2rem; }
+.room-card__price { display: flex; align-items: baseline; gap: 0.2rem; min-width: 0; }
 .price-amount { font-size: 1.4rem; font-weight: 800; color: #111827; }
 .price-night { font-size: 0.75rem; color: #9CA3AF; }
+.room-card__actions { display: flex; gap: 0.6rem; flex-wrap: wrap; min-width: 0; }
+.btn-details, .btn-book { min-width: 0; }
 
 .room-card--suite .price-amount { color: var(--gold); font-size: 1.5rem; }
 
@@ -299,20 +307,165 @@
 .pg-num--active { background: var(--gold); color: #fff; border-color: var(--gold); }
 
 /* ── Responsive ───────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .rooms-grid { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
+  .rooms-grid--suites { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
+}
+
 @media (max-width: 768px) {
+  .container { padding: 0 1rem; }
   .rooms-hero { padding: 3.5rem 0 3rem; }
-  .rooms-grid { grid-template-columns: 1fr; }
-  .rooms-grid--suites { grid-template-columns: 1fr; }
+  .rooms-content { padding: 2.5rem 0 4rem; }
+  
+  /* Force 2-column layout on tablet/mobile */
+  .rooms-grid { 
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 0.5rem !important; 
+  }
+  .rooms-grid--suites { 
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 0.5rem !important; 
+  }
+  
   .rooms-meta { flex-direction: column; align-items: flex-start; }
   .room-card__footer { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
   .room-card__actions { width: 100%; }
   .btn-details, .btn-book { flex: 1; text-align: center; }
+  
+  /* Compact card sizing for mobile */
+  .room-card__media { aspect-ratio: 16/10; }
+  .room-card__body { padding: 0.85rem; gap: 0.45rem; }
+  .room-card__title { font-size: 0.9rem; }
+  .room-card__desc { font-size: 0.75rem; line-height: 1.4; }
+  .room-card__specs { font-size: 0.7rem; gap: 0.3rem; }
+  .spec-item { padding: 0.2rem 0.5rem; font-size: 0.7rem; }
+  .feature-tag { font-size: 0.65rem; padding: 0.12rem 0.4rem; }
+  .price-amount { font-size: 1rem; }
+  .btn-details, .btn-book { padding: 0.4rem 0.7rem; font-size: 0.74rem; }
+  .room-card__header { gap: 0.3rem; }
+  .room-card__num { font-size: 0.8rem; }
+  .room-card__status-pill { font-size: 0.65rem; padding: 0.15rem 0.5rem; }
+  
+  /* Suite cards on mobile */
+  .room-card--suite .room-card__body { padding: 0.9rem; }
+  .room-card--suite .room-card__title { font-size: 0.95rem; }
+  .room-card--suite .room-card__desc { font-size: 0.78rem; }
+}
+
+/* Ultra-compact: small tablets and large phones (390px-768px) */
+@media (max-width: 600px) {
+  .container { padding: 0 0.75rem; }
+  
+  .rooms-grid { 
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 0.4rem !important; 
+  }
+  .rooms-grid--suites { 
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 0.4rem !important; 
+  }
+  
+  /* Aggressive sizing reduction */
+  .room-card__body { padding: 0.75rem; gap: 0.4rem; }
+  .room-card__title { font-size: 0.85rem; }
+  .room-card__desc { font-size: 0.7rem; line-height: 1.3; }
+  .room-card__specs { font-size: 0.65rem; gap: 0.25rem; }
+  .spec-item { padding: 0.15rem 0.4rem; font-size: 0.65rem; }
+  .feature-tag { font-size: 0.6rem; padding: 0.1rem 0.35rem; }
+  .price-amount { font-size: 0.95rem; }
+  .btn-details, .btn-book { padding: 0.35rem 0.6rem; font-size: 0.7rem; }
+  .room-card__header { gap: 0.2rem; }
+  .room-card__num { font-size: 0.75rem; }
+  .room-card__status-pill { font-size: 0.6rem; padding: 0.1rem 0.4rem; }
+}
+
+/* Tiny phones: iPhone SE and smaller (320px-389px) */
+@media (max-width: 390px) {
+  .container { padding: 0 0.5rem; }
+  .rooms-content { padding: 1.5rem 0 2.5rem; }
+  .rooms-hero { padding: 2.5rem 0 2rem; }
+  
+  .rooms-filters { gap: 0.3rem; }
+  .filter-pill { padding: 0.35rem 0.7rem; font-size: 0.7rem; }
+  
+  /* Minimal gap for tight fit without clipping */
+  .rooms-grid { 
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 0.15rem !important; 
+  }
+  .rooms-grid--suites { 
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 0.15rem !important; 
+  }
+  
+  /* Ultra-compact card sizing */
+  .room-card__media { aspect-ratio: 16/10; }
+  .room-card__body { padding: 0.6rem; gap: 0.3rem; }
+  .room-card__title { font-size: 0.8rem; font-weight: 600; }
+  .room-card__desc { font-size: 0.65rem; line-height: 1.25; }
+  .room-card__specs { font-size: 0.6rem; gap: 0.2rem; }
+  .spec-item { padding: 0.1rem 0.3rem; font-size: 0.6rem; }
+  .feature-tag { font-size: 0.55rem; padding: 0.08rem 0.3rem; }
+  .price-amount { font-size: 0.9rem; }
+  .btn-details, .btn-book { padding: 0.3rem 0.5rem; font-size: 0.65rem; }
+  .room-card__header { gap: 0.15rem; }
+  .room-card__num { font-size: 0.7rem; }
+  .room-card__status-pill { font-size: 0.55rem; padding: 0.08rem 0.35rem; }
+  .room-card__footer { gap: 0.5rem; padding-top: 0.5rem; }
+  
+  /* Minimal badges */
+  .room-card__type-badge { font-size: 0.55rem; padding: 0.12rem 0.3rem; }
+  .room-card__floor-tag { font-size: 0.6rem; padding: 0.12rem 0.3rem; }
+  .room-card__rating { font-size: 0.6rem; padding: 0.12rem 0.3rem; }
+  .slider-btn { width: 24px; height: 24px; font-size: 0.95rem; }
+  .slider-dots { bottom: 4px; gap: 3px; }
+  .slider-dot { width: 4px; height: 4px; }
+  
+  /* Suite card minimization */
+  .room-card--suite .room-card__body { padding: 0.65rem; }
+  .room-card--suite .room-card__title { font-size: 0.8rem; }
+  .room-card--suite .room-card__desc { font-size: 0.68rem; }
+}
+
+/* Extra-small phones (320px exactly) */
+@media (max-width: 320px) {
+  .container { padding: 0 0.4rem; }
+  
+  /* Single column to prevent ANY clipping on tiniest screens */
+  .rooms-grid { 
+    grid-template-columns: 1fr !important;
+    gap: 0.8rem !important; 
+  }
+  .rooms-grid--suites { 
+    grid-template-columns: 1fr !important;
+    gap: 0.8rem !important; 
+  }
+  
+  /* Slightly larger sizing for readability on single column */
+  .room-card__body { padding: 0.7rem; gap: 0.35rem; }
+  .room-card__title { font-size: 0.85rem; }
+  .room-card__desc { font-size: 0.7rem; line-height: 1.3; }
+  .room-card__specs { font-size: 0.65rem; gap: 0.25rem; }
+  .spec-item { padding: 0.12rem 0.35rem; font-size: 0.65rem; }
+  .feature-tag { font-size: 0.6rem; padding: 0.1rem 0.35rem; }
+  .price-amount { font-size: 1rem; }
+  .btn-details, .btn-book { padding: 0.35rem 0.6rem; font-size: 0.7rem; }
+  
+  /* Suite card sizing */
+  .room-card--suite .room-card__body { padding: 0.75rem; }
+  .room-card--suite .room-card__title { font-size: 0.9rem; }
+  .room-card--suite .room-card__desc { font-size: 0.72rem; }
 }
 
 @media (max-width: 480px) {
-  .rooms-filters { gap: 0.4rem; }
-  .filter-pill { padding: 0.45rem 0.9rem; font-size: 0.8rem; }
-  .price-amount { font-size: 1.2rem; }
+  body .rooms-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 0.1rem !important; }
+  body .rooms-grid--suites { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 0.1rem !important; }
+  body .rooms-grid .room-card { min-width: 0 !important; width: 100% !important; box-sizing: border-box !important; }
+  body .room-card__actions { flex: 1 1 100% !important; }
+  body .room-card__price .price-amount { font-size: 0.9rem !important; }
+  body .room-card--suite .price-amount { font-size: 1rem !important; }
+  body .room-card__footer { gap: 0.5rem !important; }
+  body .room-card__body { padding: 0.6rem !important; }
 }
 
 /* ═══════════════════════════════════════════════════════════════
