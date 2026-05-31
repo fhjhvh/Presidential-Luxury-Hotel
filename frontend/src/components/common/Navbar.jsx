@@ -40,13 +40,13 @@ const Navbar = () => {
 
   // Clean navbar - NO Market here (Market is inside Services)
   const baseMenuItems = [
-    { path: '/', label: t('nav.home') },
-    { path: '/floors', label: t('nav.floors') },
-    { path: '/rooms', label: t('nav.rooms') },
-    { path: '/suites', label: t('nav.suites') },
-    { path: '/services', label: t('nav.services') },
-    { path: '/luxury-vip', label: 'VIP Services' },
-    { path: '/booking', label: t('nav.bookNow') }
+    { path: '/', label: t('nav.home'), icon: '🏠' },
+    { path: '/floors', label: t('nav.floors'), icon: '🏢' },
+    { path: '/rooms', label: t('nav.rooms'), icon: '🛏️' },
+    { path: '/suites', label: t('nav.suites'), icon: '🛌' },
+    { path: '/services', label: t('nav.services'), icon: '🛎️' },
+    { path: '/luxury-vip', label: 'VIP Services', icon: '💎' },
+    { path: '/booking', label: t('nav.bookNow'), icon: '📅' }
   ];
 
   const getDashboardPath = () => {
@@ -204,51 +204,66 @@ const Navbar = () => {
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
           >
-            <div className="navbar__mobile-links">
-              {menuItems.map((link) => (
-                <Link
-                  key={link.path}
-                  to={link.path}
-                  className={`navbar__mobile-link ${location.pathname === link.path ? 'navbar__mobile-link--active' : ''}`}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  {link.label}
-                </Link>
-              ))}
+            <div className="navbar__mobile-panel">
+              <div className="navbar__mobile-top">
+                <div className="navbar__mobile-title">Presidential Navigation</div>
+                <div className="navbar__mobile-subtitle">Elevated routes for an exclusive guest experience</div>
+              </div>
+              <div className="navbar__mobile-links">
+                {menuItems.map((link) => (
+                  <Link
+                    key={link.path}
+                    to={link.path}
+                    className={`navbar__mobile-link ${location.pathname === link.path ? 'navbar__mobile-link--active' : ''}`}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    <span className="navbar__mobile-link-icon">{link.icon}</span>
+                    <span className="navbar__mobile-link-text">{link.label}</span>
+                  </Link>
+                ))}
+              </div>
               {isAuthenticated && user ? (
-                <div className="navbar__mobile-profile">
-                  <div className="navbar__mobile-profile-info">
-                    <span>👤 {user.name || user.firstName || user.email?.split('@')[0]}</span>
+                <div className="navbar__mobile-profile-section">
+                  <div className="navbar__mobile-profile-card">
+                    <div className="navbar__mobile-profile-avatar">👤</div>
+                    <div className="navbar__mobile-profile-details">
+                      <span className="navbar__mobile-profile-name">{user.name || user.firstName || user.email?.split('@')[0]}</span>
+                      <span className="navbar__mobile-profile-label">Member access</span>
+                    </div>
                   </div>
-                  <Link 
-                    to="/profile" 
+                  <Link
+                    to="/profile"
                     className="navbar__mobile-link"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
-                    {t('nav.myProfile')}
+                    <span className="navbar__mobile-link-icon">👤</span>
+                    <span className="navbar__mobile-link-text">{t('nav.myProfile')}</span>
                   </Link>
-                  <Link 
-                    to="/my-bookings" 
+                  <Link
+                    to="/my-bookings"
                     className="navbar__mobile-link"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
-                    {t('nav.myBookings')}
+                    <span className="navbar__mobile-link-icon">📋</span>
+                    <span className="navbar__mobile-link-text">{t('nav.myBookings')}</span>
                   </Link>
-                  <Link 
-                    to="/my-orders" 
+                  <Link
+                    to="/my-orders"
                     className="navbar__mobile-link"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
-                    {t('nav.myOrders')}
+                    <span className="navbar__mobile-link-icon">🛒</span>
+                    <span className="navbar__mobile-link-text">{t('nav.myOrders')}</span>
                   </Link>
-                  <Link 
-                    to="/market" 
+                  <Link
+                    to="/market"
                     className="navbar__mobile-link"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
-                    🏪 {t('nav.hotelStore')}
+                    <span className="navbar__mobile-link-icon">🛍️</span>
+                    <span className="navbar__mobile-link-text">{t('nav.hotelStore')}</span>
                   </Link>
-                  <button 
+                  <button
                     className="navbar__mobile-logout"
                     onClick={() => {
                       setIsMobileMenuOpen(false);
