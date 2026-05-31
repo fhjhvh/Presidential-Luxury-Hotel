@@ -190,13 +190,15 @@
   position: absolute;
   top: calc(100% + 12px);
   right: 0;
-  width: 300px;
+  width: min(320px, calc(100vw - 1rem));
+  max-height: calc(100vh - 120px);
   background: var(--bg-card);
   border: 1px solid var(--border-light);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-lg);
   overflow: hidden;
   z-index: 1001;
+  box-sizing: border-box;
 }
 
 .navbar__profile-header {
@@ -232,6 +234,8 @@
 
 .navbar__profile-menu {
   padding: 0.5rem 0;
+  max-height: calc(100vh - 220px);
+  overflow-y: auto;
 }
 
 .navbar__profile-item {
@@ -241,6 +245,8 @@
   padding: 0.9375rem 1.5rem;
   color: var(--text-primary);
   font-size: 0.9375rem;
+  line-height: 1.4;
+  white-space: normal;
   transition: var(--transition-fast);
 }
 
@@ -416,6 +422,17 @@
   .navbar__brand {
     width: 100%;
     justify-content: space-between;
+  }
+
+  .navbar__profile-dropdown {
+    width: min(100%, 320px);
+    top: calc(100% + 8px);
+    right: 0;
+    left: auto;
+  }
+
+  .navbar__profile-menu {
+    max-height: calc(100vh - 220px);
   }
 
   .navbar__actions {
