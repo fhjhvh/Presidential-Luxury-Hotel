@@ -868,6 +868,188 @@
   border-top: 1px solid rgba(201, 164, 76, 0.1);
 }
 
+.profile-card {
+  position: relative;
+  background: rgba(11, 11, 26, 0.82);
+  border: 1px solid rgba(201, 164, 76, 0.18);
+  border-radius: 22px;
+  padding: 1.4rem;
+  overflow: hidden;
+  box-shadow: 0 18px 60px rgba(0, 0, 0, 0.18);
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.profile-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(201, 164, 76, 0.28);
+  box-shadow: 0 22px 70px rgba(0, 0, 0, 0.22);
+}
+
+.profile-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 22px;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(201, 164, 76, 0.35), rgba(255, 255, 255, 0));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  pointer-events: none;
+}
+
+.profile-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.profile-card__top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.profile-card__headline {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  min-width: 0;
+}
+
+.profile-card__icon {
+  width: 46px;
+  height: 46px;
+  display: grid;
+  place-items: center;
+  border-radius: 16px;
+  background: rgba(201, 164, 76, 0.18);
+  color: #fff;
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+
+.profile-card__title {
+  min-width: 0;
+}
+
+.profile-card__title h4 {
+  color: #f7e7b1;
+  margin: 0;
+  font-size: 1.08rem;
+}
+
+.profile-card__subtitle,
+.profile-card__detail,
+.profile-card__tag {
+  margin: 0.35rem 0 0;
+  color: rgba(255, 255, 255, 0.68);
+}
+
+.profile-card__tag {
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.profile-card__detail {
+  font-size: 0.88rem;
+}
+
+.profile-card__meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.65rem;
+  min-width: 0;
+}
+
+.profile-card__status {
+  padding: 0.35rem 0.85rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+}
+
+.profile-card__price {
+  color: #c9a44c;
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+.profile-card__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.profile-card__chip {
+  padding: 0.45rem 0.85rem;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(201, 164, 76, 0.18);
+  border-radius: 999px;
+  color: #f7e7b1;
+  font-size: 0.83rem;
+}
+
+.profile-card__list {
+  margin-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 1rem;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.profile-card__list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 0.92rem;
+  min-width: 0;
+}
+
+.profile-card__note {
+  margin-top: 1rem;
+  color: rgba(255, 255, 255, 0.58);
+  font-size: 0.88rem;
+  font-style: italic;
+}
+
+.profile-card__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.2rem;
+}
+
+.profile-card__action {
+  flex: 1 1 140px;
+  min-width: 0;
+}
+
+@media (max-width: 768px) {
+  .profile-card__top {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .profile-card__meta {
+    align-items: flex-start;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .profile-card__actions {
+    flex-direction: column;
+  }
+}
+
 .btn-cancel {
   padding: 0.4rem 0.9rem;
   background: rgba(244, 67, 54, 0.15);
@@ -2106,15 +2288,32 @@
   overflow: visible;     /* show everything; wrap rather than clip */
 }
 
-/* CATCH-ALL: no descendant of a profile card may be wider than the card.
-   min-width:0 defeats the flexbox "won't shrink below content" default that
-   caused horizontal overflow; max-width:100% caps everything to the card. */
+/* Ensure every card and card descendant can shrink on narrow screens. */
+.bookings-list .booking-card,
+.bookings-list .order-card,
+.bookings-list .service-card,
 .bookings-list .booking-card *,
 .bookings-list .order-card *,
 .bookings-list .service-card * {
   min-width: 0;
   max-width: 100%;
   box-sizing: border-box;
+}
+
+/* Keep inner sections flexible and prevent force-wide children. */
+.booking-card .booking-header,
+.order-card .booking-header,
+.service-card .booking-header,
+.booking-card .booking-info,
+.order-card .booking-info,
+.service-card .booking-info,
+.booking-card .booking-status,
+.order-card .booking-status,
+.service-card .booking-status,
+.booking-card .booking-actions-inline,
+.order-card .booking-actions-inline,
+.service-card .booking-actions-inline {
+  min-width: 0;
 }
 
 /* Header row: the status/price block drops below on narrow widths */
@@ -2139,7 +2338,9 @@
   flex-direction: column;
   align-items: flex-end;
   gap: 0.3rem;
-  flex-shrink: 0;
+  flex: 0 1 auto;
+  min-width: 0;
+  max-width: 100%;
 }
 
 /* Every text node inside a card wraps instead of clipping or pushing width */
@@ -2149,7 +2350,9 @@
 .booking-card .booking-number,
 .booking-card .price,
 .order-card h4,
-.order-card p {
+.order-card p,
+.service-card h4,
+.service-card p {
   max-width: 100%;
   white-space: normal;          /* override any nowrap that caused clipping */
   word-break: break-word;
@@ -2160,7 +2363,9 @@
 
 /* Chips / linked items / action buttons wrap onto multiple lines */
 .booking-card .linked-services,
-.booking-card .booking-actions-inline {
+.booking-card .booking-actions-inline,
+.order-card .booking-actions-inline,
+.service-card .booking-actions-inline {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
@@ -2168,16 +2373,62 @@
   min-width: 0;
 }
 
+.booking-card .booking-actions-inline > *,
+.order-card .booking-actions-inline > *,
+.service-card .booking-actions-inline > * {
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+.order-item {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.5rem;
+  min-width: 0;
+}
+
+.order-item .item-name,
+.order-item .item-qty,
+.order-item .item-price {
+  min-width: 0;
+}
+
+.order-item .item-name {
+  flex: 1 1 0;
+}
+
+.order-item .item-qty,
+.order-item .item-price {
+  flex: 0 1 auto;
+}
+
 /* Mobile: stack header, full-width status block, buttons wrap */
 @media (max-width: 768px) {
-  .booking-card .booking-header { flex-direction: column; }
-  .booking-card .booking-status {
+  .booking-card .booking-header,
+  .order-card .booking-header,
+  .service-card .booking-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .booking-card .booking-status,
+  .order-card .booking-status,
+  .service-card .booking-status {
     align-items: flex-start;
     flex-direction: row;
     flex-wrap: wrap;
     gap: 0.5rem 1rem;
+    width: 100%;
+    min-width: 0;
   }
-  .booking-card .booking-actions-inline > * { flex: 1 1 auto; }
+
+  .booking-card .booking-actions-inline > *,
+  .order-card .booking-actions-inline > *,
+  .service-card .booking-actions-inline > * {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
 }
 
 [dir="rtl"] .booking-card .booking-status { align-items: flex-start; }

@@ -560,40 +560,43 @@ const UserProfile = () => {
               ) : (
                 <div className="bookings-list">
                   {bookings.map(booking => (
-                    <div key={booking.id} className="booking-card">
-                      <div className="booking-header">
-                        <div className="booking-info">
-                          <h4>Room {booking.room?.roomNumber} — {booking.room?.type}</h4>
-                          <p className="booking-dates">
-                            {new Date(booking.checkInDate).toLocaleDateString()} → {new Date(booking.checkOutDate).toLocaleDateString()}
-                          </p>
-                          <p className="booking-number">#{booking.bookingNumber}</p>
+                    <div key={booking.id} className="profile-card profile-card--room">
+                      <div className="profile-card__top">
+                        <div className="profile-card__headline">
+                          <span className="profile-card__icon">🏨</span>
+                          <div className="profile-card__title">
+                            <h4>Room {booking.room?.roomNumber} — {booking.room?.type}</h4>
+                            <p className="profile-card__subtitle">
+                              {new Date(booking.checkInDate).toLocaleDateString()} → {new Date(booking.checkOutDate).toLocaleDateString()}
+                            </p>
+                            <p className="profile-card__tag">#{booking.bookingNumber}</p>
+                          </div>
                         </div>
-                        <div className="booking-status">
-                          <span className={`status ${booking.status.toLowerCase()}`}>{booking.status}</span>
-                          <span className="price">${booking.finalPrice || booking.totalPrice}</span>
+                        <div className="profile-card__meta">
+                          <span className={`profile-card__status status ${booking.status.toLowerCase()}`}>{booking.status}</span>
+                          <span className="profile-card__price">${booking.finalPrice || booking.totalPrice}</span>
                         </div>
                       </div>
                       {booking.serviceBookings?.length > 0 && (
-                        <div className="linked-services">
-                          <p className="linked-title">Linked Services:</p>
+                        <div className="profile-card__chips">
+                          <span className="profile-card__chip">Linked Services</span>
                           {booking.serviceBookings.map(s => (
-                            <span key={s.id} className="linked-item">{s.serviceType}</span>
+                            <span key={s.id} className="profile-card__chip">{s.serviceType}</span>
                           ))}
                         </div>
                       )}
-                      <div className="booking-actions-inline">
+                      <div className="profile-card__actions">
                         {canCancel(booking.status) && (
-                          <button onClick={() => requestCancelBooking(booking)} className="btn-cancel" disabled={actionLoading === booking.id}>
+                          <button onClick={() => requestCancelBooking(booking)} className="btn-cancel profile-card__action" disabled={actionLoading === booking.id}>
                             {actionLoading === booking.id ? '...' : 'Cancel'}
                           </button>
                         )}
                         {canCancel(booking.status) && (
-                          <button onClick={() => openDateModal(booking)} className="btn-reschedule" disabled={actionLoading === booking.id}>
+                          <button onClick={() => openDateModal(booking)} className="btn-reschedule profile-card__action" disabled={actionLoading === booking.id}>
                             Change Date
                           </button>
                         )}
-                        <button onClick={() => generateBookingPDF(booking, 'room')} className="btn-pdf">PDF</button>
+                        <button onClick={() => generateBookingPDF(booking, 'room')} className="btn-pdf profile-card__action">PDF</button>
                       </div>
                     </div>
                   ))}
@@ -619,24 +622,26 @@ const UserProfile = () => {
               ) : (
                 <div className="bookings-list">
                   {orders.map(order => (
-                    <div key={order.id} className="booking-card order-card">
-                      <div className="booking-header">
-                        <div className="booking-info">
-                          <h4>{order.orderType === 'MARKET' ? '🛍️ Market Order' : '🍽️ Restaurant Order'}</h4>
-                          <p>{new Date(order.createdAt).toLocaleDateString()}</p>
-                          <p className="booking-number">#{order.orderNumber}</p>
-                          {order.roomNumber && <p className="booking-dates">Room {order.roomNumber}</p>}
-                          <p style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.5)' }}>{order.items?.length || 0} item(s)</p>
+                    <div key={order.id} className="profile-card profile-card--order">
+                      <div className="profile-card__top">
+                        <div className="profile-card__headline">
+                          <span className="profile-card__icon">{order.orderType === 'MARKET' ? '🛍️' : '🍽️'}</span>
+                          <div className="profile-card__title">
+                            <h4>{order.orderType === 'MARKET' ? 'Market Order' : 'Restaurant Order'}</h4>
+                            <p className="profile-card__subtitle">{new Date(order.createdAt).toLocaleDateString()}</p>
+                            <p className="profile-card__tag">#{order.orderNumber}{order.roomNumber ? ` · Room ${order.roomNumber}` : ''}</p>
+                            <p className="profile-card__detail">{order.items?.length || 0} item(s)</p>
+                          </div>
                         </div>
-                        <div className="booking-status">
-                          <span className={`status ${order.status.toLowerCase()}`}>{order.status}</span>
-                          <span className="price">${order.totalPrice}</span>
+                        <div className="profile-card__meta">
+                          <span className={`profile-card__status status ${order.status.toLowerCase()}`}>{order.status}</span>
+                          <span className="profile-card__price">${order.totalPrice}</span>
                         </div>
                       </div>
                       {order.items?.length > 0 && (
-                        <div style={{ padding: '0.5rem 0', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
+                        <div className="profile-card__list">
                           {order.items.map((item, idx) => (
-                            <div key={idx} style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.85rem', color: 'rgba(255,255,255,0.6)', padding: '0.2rem 0' }}>
+                            <div key={idx} className="profile-card__list-item">
                               <span>{item.item?.name || item.name || 'Item'} × {item.quantity}</span>
                               <span>${Number(item.price || 0).toFixed(2)}</span>
                             </div>
@@ -644,15 +649,15 @@ const UserProfile = () => {
                         </div>
                       )}
                       {(!order.items || order.items.length === 0) && order.notes && (
-                        <p style={{ fontSize: '0.82rem', color: 'rgba(255,255,255,0.4)', fontStyle: 'italic', margin: '0.25rem 0 0' }}>{order.notes}</p>
+                        <p className="profile-card__note">{order.notes}</p>
                       )}
-                      <div className="booking-actions-inline">
+                      <div className="profile-card__actions">
                         {['PENDING', 'PREPARING'].includes(order.status) && (
-                          <button onClick={() => handleCancelOrder(order.id)} className="btn-cancel" disabled={actionLoading === order.id}>
+                          <button onClick={() => handleCancelOrder(order.id)} className="btn-cancel profile-card__action" disabled={actionLoading === order.id}>
                             {actionLoading === order.id ? '...' : 'Cancel'}
                           </button>
                         )}
-                        <button onClick={() => generateOrderPDF(order)} className="btn-pdf">PDF</button>
+                        <button onClick={() => generateOrderPDF(order)} className="btn-pdf profile-card__action">PDF</button>
                       </div>
                     </div>
                   ))}
@@ -677,32 +682,35 @@ const UserProfile = () => {
               ) : (
                 <div className="bookings-list">
                   {serviceBookings.map(service => (
-                    <div key={service.id} className="booking-card service-card">
-                      <div className="booking-header">
-                        <div className="booking-info">
-                          <h4>
-                            {service.serviceType === 'spa' && '💆 Spa & Massage'}
-                            {service.serviceType === 'gym' && '🏋️ Gym Access'}
-                            {service.serviceType === 'pool' && '🏊 Pool Access'}
-                            {service.serviceType === 'driver' && '🚗 Driver Service'}
-                            {service.serviceType === 'butler' && '🎩 Butler Service'}
-                            {!['spa','gym','pool','driver','butler'].includes(service.serviceType) && service.serviceType}
-                          </h4>
-                          <p>{new Date(service.bookingDate).toLocaleDateString()}{service.startTime && ` at ${service.startTime}`}</p>
-                          <p className="booking-number">#{service.bookingNumber}</p>
+                    <div key={service.id} className="profile-card profile-card--service">
+                      <div className="profile-card__top">
+                        <div className="profile-card__headline">
+                          <span className="profile-card__icon">{service.serviceType === 'spa' ? '💆' : service.serviceType === 'gym' ? '🏋️' : service.serviceType === 'pool' ? '🏊' : service.serviceType === 'driver' ? '🚗' : service.serviceType === 'butler' ? '🎩' : '🛎️'}</span>
+                          <div className="profile-card__title">
+                            <h4>
+                              {service.serviceType === 'spa' && 'Spa & Massage'}
+                              {service.serviceType === 'gym' && 'Gym Access'}
+                              {service.serviceType === 'pool' && 'Pool Access'}
+                              {service.serviceType === 'driver' && 'Driver Service'}
+                              {service.serviceType === 'butler' && 'Butler Service'}
+                              {!['spa','gym','pool','driver','butler'].includes(service.serviceType) && service.serviceType}
+                            </h4>
+                            <p className="profile-card__subtitle">{new Date(service.bookingDate).toLocaleDateString()}{service.startTime && ` at ${service.startTime}`}</p>
+                            <p className="profile-card__tag">#{service.bookingNumber}</p>
+                          </div>
                         </div>
-                        <div className="booking-status">
-                          <span className={`status ${service.status.toLowerCase()}`}>{service.status}</span>
-                          <span className="price">${service.totalPrice}</span>
+                        <div className="profile-card__meta">
+                          <span className={`profile-card__status status ${service.status.toLowerCase()}`}>{service.status}</span>
+                          <span className="profile-card__price">${service.totalPrice}</span>
                         </div>
                       </div>
-                      <div className="booking-actions-inline">
+                      <div className="profile-card__actions">
                         {canCancel(service.status) && (
-                          <button onClick={() => handleCancelService(service.id)} className="btn-cancel" disabled={actionLoading === service.id}>
+                          <button onClick={() => handleCancelService(service.id)} className="btn-cancel profile-card__action" disabled={actionLoading === service.id}>
                             {actionLoading === service.id ? '...' : 'Cancel'}
                           </button>
                         )}
-                        <button onClick={() => generateServicePDF(service)} className="btn-pdf">PDF</button>
+                        <button onClick={() => generateServicePDF(service)} className="btn-pdf profile-card__action">PDF</button>
                       </div>
                     </div>
                   ))}
@@ -734,24 +742,26 @@ const UserProfile = () => {
                     };
                     const typeLabel = { valet: 'Valet', self: 'Self-Park', vip: 'VIP', ev: 'EV Charging' }[p.parkingType] || p.parkingType;
                     return (
-                      <div key={p.id} className="booking-card">
-                        <div className="booking-header">
-                          <div className="booking-info">
-                            <h4>🅿️ {t('profile.parkingSpot') || 'Parking Spot'} {p.spotNumber}</h4>
-                            <p className="booking-dates">
-                              {fmt(p.reservationDate)}
-                              {p.startTime && p.endTime && ` · ${fmt(p.startTime)} → ${fmt(p.endTime)}`}
-                            </p>
-                            <p className="booking-number">#{p.reservationNumber} · {typeLabel}</p>
+                      <div key={p.id} className="profile-card profile-card--parking">
+                        <div className="profile-card__top">
+                          <div className="profile-card__headline">
+                            <span className="profile-card__icon">🅿️</span>
+                            <div className="profile-card__title">
+                              <h4>{t('profile.parkingSpot') || 'Parking Spot'} {p.spotNumber}</h4>
+                              <p className="profile-card__subtitle">
+                                {fmt(p.reservationDate)}{p.startTime && p.endTime && ` · ${fmt(p.startTime)} → ${fmt(p.endTime)}`}
+                              </p>
+                              <p className="profile-card__tag">#{p.reservationNumber} · {typeLabel}</p>
+                            </div>
                           </div>
-                          <div className="booking-status">
-                            <span className={`status ${String(p.status).toLowerCase()}`}>{p.status}</span>
-                            <span className="price">{p.price > 0 ? `$${p.price}` : (t('profile.complimentary') || 'Free')}</span>
+                          <div className="profile-card__meta">
+                            <span className={`profile-card__status status ${String(p.status).toLowerCase()}`}>{p.status}</span>
+                            <span className="profile-card__price">{p.price > 0 ? `$${p.price}` : (t('profile.complimentary') || 'Free')}</span>
                           </div>
                         </div>
                         {canCancel(p.status) && (
-                          <div className="booking-actions-inline">
-                            <button onClick={() => handleCancelParking(p.id)} className="btn-cancel" disabled={actionLoading === p.id}>
+                          <div className="profile-card__actions">
+                            <button onClick={() => handleCancelParking(p.id)} className="btn-cancel profile-card__action" disabled={actionLoading === p.id}>
                               {actionLoading === p.id ? '...' : (t('profile.cancel') || 'Cancel')}
                             </button>
                           </div>
